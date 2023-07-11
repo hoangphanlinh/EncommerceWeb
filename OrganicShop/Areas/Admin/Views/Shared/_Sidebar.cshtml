@@ -1,4 +1,359 @@
-﻿
-@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿<!-- ====================================
+     ——— LEFT SIDEBAR WITH OUT FOOTER
+   ===================================== -->
+<aside class="left-sidebar sidebar-dark" id="left-sidebar">
+    <div id="sidebar" class="sidebar sidebar-with-footer">
+        <!-- Aplication Brand -->
+        <div class="app-brand">
+            <a href="/index.html">
+                <img src="~/adminassets/images/logo.png" alt="Mono">
+                <span class="brand-name">Ogani</span>
+            </a>
+        </div>
+
+        <!-- begin sidebar scrollbar -->
+        <div class="sidebar-left" data-simplebar style="height: 100%;">
+            <!-- sidebar menu -->
+            <ul class="nav sidebar-inner" id="sidebar-menu">
+
+
+                <!--Dashboard-->
+                <li class="active">
+                    <a class="sidenav-item-link" href="index.html">
+                        <i class="mdi mdi-briefcase-account-outline"></i>
+                        <span class="nav-text">Business Dashboard</span>
+                    </a>
+                </li>
+
+                <!--order -->
+                <li class="has-sub">
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#ui-elements"
+                       aria-expanded="false" aria-controls="ui-elements">
+                        <i class="mdi mdi-vector-arrange-above"></i>
+                        <span class="nav-text">Order </span> <b class="caret"></b>
+                    </a>
+                    <ul class="collapse" id="ui-elements"
+                        data-parent="#sidebar-menu">
+                        <div class="sub-menu">
+
+                        <li>
+                            <a class="sidenav-item-link" href="alert.html">
+                                <span class="nav-text">Alert</span>
+
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="sidenav-item-link" href="badge.html">
+                                <span class="nav-text">Badge</span>
+
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="sidenav-item-link" href="breadcrumb.html">
+                                <span class="nav-text">Breadcrumb</span>
+
+                            </a>
+                        </li>
+
+        </div>
+        </ul>
+        </li>
+
+        <!--Product -->
+        <li class="has-sub">
+            <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#charts"
+               aria-expanded="false" aria-controls="charts">
+                <i class="mdi mdi-package"></i>
+                <span class="nav-text">Product </span> <b class="caret"></b>
+            </a>
+            <ul class="collapse" id="charts"
+                data-parent="#sidebar-menu">
+                <div class="sub-menu">
+                <li>
+                    <a class="sidenav-item-link" href="apex-charts.html">
+                        <span class="nav-text">Apex Charts</span>
+
+                    </a>
+                </li>
+    </div>
+    </ul>
+    </li>
+
+    <!--Customer -->
+    <li class="has-sub">
+        <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#users"
+           aria-expanded="false" aria-controls="users">
+            <i class="mdi mdi-account"></i>
+            <span class="nav-text">Customer </span> <b class="caret"></b>
+        </a>
+        <ul class="collapse" id="users"
+            data-parent="#sidebar-menu">
+            <div class="sub-menu">
+
+            <li>
+                <a class="sidenav-item-link" href="user-profile.html">
+                    <span class="nav-text">User Profile</span>
+
+                </a>
+            </li>
+
+            <li>
+                <a class="sidenav-item-link" href="user-activities.html">
+                    <span class="nav-text">User Activities</span>
+
+                </a>
+            </li>
+
+            <li>
+                <a class="sidenav-item-link" href="user-profile-settings.html">
+                    <span class="nav-text">User Profile Settings</span>
+
+                </a>
+            </li>
+
+            <li>
+                <a class="sidenav-item-link" href="user-account-settings.html">
+                    <span class="nav-text">User Account Settings</span>
+
+                </a>
+            </li>
+
+
+            <li>
+                <a class="sidenav-item-link" href="user-planing-settings.html">
+                    <span class="nav-text">User Planing Settings</span>
+
+                </a>
+            </li>
+
+
+            <li>
+                <a class="sidenav-item-link" href="user-billing.html">
+                    <span class="nav-text">User billing</span>
+
+                </a>
+            </li>
+
+            <li>
+                <a class="sidenav-item-link" href="user-notify-settings.html">
+                    <span class="nav-text">User Notify Settings</span>
+
+                </a>
+            </li>
+
+            </div>
+        </ul>
+    </li>
+
+    <!--Revenue-->
+    <li class="has-sub">
+        <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#authentication"
+           aria-expanded="false" aria-controls="authentication">
+            <i class="mdi mdi-chart-line"></i>
+            <span class="nav-text">Revenue</span> <b class="caret"></b>
+        </a>
+        <ul class="collapse" id="authentication"
+            data-parent="#sidebar-menu">
+            <div class="sub-menu">
+
+            <li>
+                <a class="sidenav-item-link" href="sign-in.html">
+                    <span class="nav-text">Sign In</span>
+
+                </a>
+            </li>
+
+            <li>
+                <a class="sidenav-item-link" href="sign-up.html">
+                    <span class="nav-text">Sign Up</span>
+
+                </a>
+            </li>
+
+            <li>
+                <a class="sidenav-item-link" href="reset-password.html">
+                    <span class="nav-text">Reset Password</span>
+
+                </a>
+            </li>
+            </div>
+        </ul>
+    </li>
+
+    <!--System -->
+    <li class="has-sub">
+        <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#other-page"
+           aria-expanded="false" aria-controls="other-page">
+            <i class="mdi mdi-settings-outline"></i>
+            <span class="nav-text">System </span> <b class="caret"></b>
+        </a>
+        <ul class="collapse" id="other-page"
+            data-parent="#sidebar-menu">
+            <div class="sub-menu">
+
+            <li>
+                <a class="sidenav-item-link" href="invoice.html">
+                    <span class="nav-text">Accounts</span>
+
+                </a>
+            </li>
+
+            <li>
+                <a class="sidenav-item-link" asp-area="Admin" asp-controller="AdminRole" asp-action="Index">
+                    <span class="nav-text">Roles</span>
+
+                </a>
+            </li>
+
+            <li>
+                <a class="sidenav-item-link" href="404.html">
+                    <span class="nav-text">Categories</span>
+
+                </a>
+            </li>
+
+            <li>
+                <a class="sidenav-item-link" href="page-comingsoon.html">
+                    <span class="nav-text">Access</span>
+
+                </a>
+            </li>
+
+
+            <li>
+                <a class="sidenav-item-link" href="page-maintenance.html">
+                    <span class="nav-text">Locations</span>
+
+                </a>
+            </li>
+            </div>
+        </ul>
+    </li>
+
+    <!--News -->
+    <li class="has-sub">
+        <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#customization"
+           aria-expanded="false" aria-controls="customization">
+            <i class="mdi mdi-newspaper"></i>
+            <span class="nav-text">News </span> <b class="caret"></b>
+        </a>
+        <ul class="collapse" id="customization"
+            data-parent="#sidebar-menu">
+            <div class="sub-menu">
+
+            <li>
+                <a class="sidenav-item-link" href="navbar-customization.html">
+                    <span class="nav-text">Navbar</span>
+
+                </a>
+            </li>
+
+            <li>
+                <a class="sidenav-item-link" href="sidebar-customization.html">
+                    <span class="nav-text">Sidebar</span>
+
+                </a>
+            </li>
+
+            <li>
+                <a class="sidenav-item-link" href="styling.html">
+                    <span class="nav-text">Styling</span>
+
+                </a>
+            </li>
+
+            </div>
+        </ul>
+    </li>
+
+    <!--Pages -->
+    <li class="has-sub">
+        <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#pages"
+           aria-expanded="false" aria-controls="customization">
+            <i class="mdi mdi-google-pages"></i>
+            <span class="nav-text">Pages </span> <b class="caret"></b>
+        </a>
+        <ul class="collapse" id="pages"
+            data-parent="#sidebar-menu">
+            <div class="sub-menu">
+
+            <li>
+                <a class="sidenav-item-link" href="navbar-customization.html">
+                    <span class="nav-text">Navbar</span>
+
+                </a>
+            </li>
+
+            <li>
+                <a class="sidenav-item-link" href="sidebar-customization.html">
+                    <span class="nav-text">Sidebar</span>
+
+                </a>
+            </li>
+
+            <li>
+                <a class="sidenav-item-link" href="styling.html">
+                    <span class="nav-text">Styling</span>
+
+                </a>
+            </li>
+
+            </div>
+        </ul>
+    </li>
+
+    <!--Shipper-->
+    <li class="has-sub">
+        <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#shippers"
+           aria-expanded="false" aria-controls="customization">
+            <i class="mdi mdi-walk"></i>
+            <span class="nav-text">Shipper </span> <b class="caret"></b>
+        </a>
+        <ul class="collapse" id="shippers"
+            data-parent="#sidebar-menu">
+            <div class="sub-menu">
+
+            <li>
+                <a class="sidenav-item-link" href="navbar-customization.html">
+                    <span class="nav-text">Navbar</span>
+
+                </a>
+            </li>
+
+            <li>
+                <a class="sidenav-item-link" href="sidebar-customization.html">
+                    <span class="nav-text">Sidebar</span>
+
+                </a>
+            </li>
+
+            <li>
+                <a class="sidenav-item-link" href="styling.html">
+                    <span class="nav-text">Styling</span>
+
+                </a>
+            </li>
+
+            </div>
+        </ul>
+    </li>
+    </ul>
+
+    </div>
+
+    <div class="sidebar-footer">
+        <div class="sidebar-footer-content">
+            <ul class="d-flex">
+                <li>
+                    <a href="user-account-settings.html" data-toggle="tooltip" title="Profile settings"><i class="mdi mdi-settings"></i></a>
+                </li>
+                <li>
+                    <a href="#" data-toggle="tooltip" title="No chat messages"><i class="mdi mdi-chat-processing"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </div>
+</aside>
