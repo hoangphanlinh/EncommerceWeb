@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace OrganicShop.Models
 {
@@ -6,7 +7,9 @@ namespace OrganicShop.Models
     {
         [Key]
         public int RoleId { get; set; }
+        [DisplayName("Name")]
         public string RoleName { get; set; } = string.Empty;
+        [DisplayName("Description")]
         public string RoleDescription { get; set; } = string.Empty;
     }
 }

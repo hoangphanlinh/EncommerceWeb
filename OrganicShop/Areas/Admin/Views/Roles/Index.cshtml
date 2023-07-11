@@ -1,0 +1,40 @@
+﻿@model IEnumerable<OrganicShop.Models.Roles>
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Roles /</span> List</h4>
+
+<a asp-action="Create" class="btn btn-primary">Create New Role </a>
+<hr />
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+            <td style="color:black" scope="row">@item.RoleId</td>
+            <td style="color:black" >@item.RoleName</td>
+            <td style="color:black">@item.RoleDescription</td>
+            <th class="text-center">
+                <a asp-action="Edit" asp-route-id="@item.RoleId">
+                    <i class="mdi mdi-open-in-new"></i>
+                </a>
+                <a asp-action="Delete" asp-route-id="@item.RoleId">
+                    <i class="mdi mdi-close text-danger"></i>
+                </a>
+
+            </th>
+        </tr>
+        }
+      
+    </tbody>
+</table>
