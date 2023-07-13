@@ -1,0 +1,26 @@
+﻿@model OrganicShop.Models.Roles
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="RoleId" />
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="validationServer01">Name</label>
+            <input type="text" class="form-control border-success" asp-for="RoleName" id="validationServer01" placeholder="Role name" required>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationServer02">Description</label>
+            <input type="text" class="form-control border-info" asp-for="RoleDescription" id="validationServer02" placeholder="Role description"
+                   required>
+        </div>
+    </div>
+    <button class="btn btn-primary btn-pill mr-2" type="submit">Edit</button>
+</form>
+<hr />
+<div>
+    <a asp-action="Index" style="font-weight:700">Back to List</a>
+</div>

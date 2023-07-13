@@ -1,0 +1,74 @@
+﻿@model Accounts
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>Edit account!</h3>
+<hr />
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="@Model.AccountID " />
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault01">Phone</label>
+            <input type="number" class="form-control" id="validationDefault01" placeholder="Phone" asp-for="Phone">
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault02">Fullname</label>
+            <input type="text" class="form-control" id="validationDefault02" placeholder="Full name" asp-for="FullName">
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationDefaultUsername">Email</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroupPrepend2">@@</span>
+                </div>
+                <input type="text" class="form-control" id="validationDefaultUsername" placeholder="Email" aria-describedby="inputGroupPrepend2" asp-for="Email">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault03">Password</label>
+            <input type="password" class="form-control" id="validationDefault03" placeholder="Password" asp-for="Password">
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault04">Salt</label>
+            <input type="text" class="form-control" id="validationDefault04" placeholder="Salt" asp-for="Salt">
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label for="exampleFormControlSelect14">Roles</label>
+            @Html.DropDownList("RoleID", ViewBag.RoleList as SelectList, "Select Role", new{@class="form-control"})
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault04">CreatedDate</label>
+            <input type="datetime-local" class="form-control" id="validationDefault04" placeholder="CreatedDate" asp-for="CreatedDate">
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault03">LastLogin</label>
+            <input type="datetime-local" class="form-control" id="validationDefault03" placeholder="LastLogin" asp-for="LastLogin">
+        </div>
+
+    </div>
+    <div class="form-group">
+        <p style="color:red">* Xac thuc tai khoan Active</p>
+        <label class="switch switch-info switch-pill form-control-label mr-2">
+            <input type="checkbox" class="switch-input form-check-input" asp-for="Active">
+            <span class="switch-label" style="background-color: #8a909d;"></span>
+            <span class="switch-handle"></span>
+        </label>
+    </div>
+    <button class="btn btn-primary" type="submit">Edit</button>
+</form>
+<hr />
+<div>
+    <a asp-action="Index"><h5>Back to List</h5></a>
+</div>
+
+

@@ -93,57 +93,20 @@
             <div class="sub-menu">
 
             <li>
-                <a class="sidenav-item-link" href="user-profile.html">
-                    <span class="nav-text">User Profile</span>
+                <a class="sidenav-item-link" asp-area="Admin" asp-controller="Customers" asp-action="Index">
+                    <span class="nav-text">Customer List</span>
 
                 </a>
             </li>
 
             <li>
                 <a class="sidenav-item-link" href="user-activities.html">
-                    <span class="nav-text">User Activities</span>
+                    <span class="nav-text">Search customers</span>
 
                 </a>
-            </li>
-
-            <li>
-                <a class="sidenav-item-link" href="user-profile-settings.html">
-                    <span class="nav-text">User Profile Settings</span>
-
-                </a>
-            </li>
-
-            <li>
-                <a class="sidenav-item-link" href="user-account-settings.html">
-                    <span class="nav-text">User Account Settings</span>
-
-                </a>
-            </li>
-
-
-            <li>
-                <a class="sidenav-item-link" href="user-planing-settings.html">
-                    <span class="nav-text">User Planing Settings</span>
-
-                </a>
-            </li>
-
-
-            <li>
-                <a class="sidenav-item-link" href="user-billing.html">
-                    <span class="nav-text">User billing</span>
-
-                </a>
-            </li>
-
-            <li>
-                <a class="sidenav-item-link" href="user-notify-settings.html">
-                    <span class="nav-text">User Notify Settings</span>
-
-                </a>
-            </li>
-
+            </li>   
             </div>
+            
         </ul>
     </li>
 
@@ -194,14 +157,14 @@
             <div class="sub-menu">
 
             <li>
-                <a class="sidenav-item-link" href="invoice.html">
+                <a class="sidenav-item-link" asp-area="Admin" asp-controller="Account" asp-action="Index">
                     <span class="nav-text">Accounts</span>
 
                 </a>
             </li>
 
             <li>
-                <a class="sidenav-item-link" asp-area="Admin" asp-controller="AdminRole" asp-action="Index">
+                <a class="sidenav-item-link" asp-area="Admin" asp-controller="Roles" asp-action="Index">
                     <span class="nav-text">Roles</span>
 
                 </a>

@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Accounts>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index">Accounts</a>  </li>
+        <li class="breadcrumb-item active" aria-current="page">List </li>
+    </ol>
+</nav>
+<div class="card card-default">
+    <div class="card-header">
+        <div class="row m-b-30">
+            <div class="col-lg-12">
+                <form asp-action="Index" method="get" class="form-inline">
+                    <div class="d-md-flex">
+                        <div class="m-b-10 m-r-15">
+                            <select class="custom-select" id="idrole" name="idrole" style="min-width:200px;" asp-items="ViewBag.RoleList">
+                                <option value="0" disable selected>Select role</option>
+                            </select>
+                        </div>
+
+                        <div class="m-b-10">
+                            <select class="custom-select" id="idstatus" name="idstatus" style="min-width:200px;" asp-items="ViewBag.StatusList">
+                                <option value="" disable selected>Select status</option>
+                            </select>
+
+                        </div>
+                     </div>
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </form>
+                    </div>
+            </div>
+        <a asp-action="Create" class="btn btn-primary"><i class="mdi mdi-account-plus"></i> <span>new account</span></a>
+
+        </div>
+        </div>
+<table id="productsTable" class="table table-product" style="width:100%">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Salt</th>
+            <th>FullName</th>
+            <th>RoleID</th>
+            <th>LastLogin</th>
+            <th>CreatedDate</th>
+            <th >Status</th>
+            <th>Manage</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.AccountID</td>
+                <td>@item.Phone</td>
+                <td>@item.Email</td>
+                <td>@item.Password</td>
+                <td>@item.Salt</td>
+                <td>@item.FullName</td>
+                <td>@item.RoleID</td>
+                <td>@item.LastLogin</td>
+                <td>@item.CreatedDate</td>
+                <td>
+                    @if(item.Active)
+                    {
+                        <span class="badge badge-success">Active</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-danger">Block</span>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.AccountID"><i class="mdi mdi-account-edit"></i></a>
+                    <a asp-action="Details" asp-route-id="@item.AccountID"><i class="mdi mdi-account-details"></i></a>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+
