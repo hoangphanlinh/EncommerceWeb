@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using OrganicShop.Data.Interfaces;
 using OrganicShop.Models;
 using System.Data;
@@ -11,7 +12,8 @@ namespace OrganicShop.Data.Services
         public AccountServices(AppDBContext context) { _context = context; }
         public List<Accounts> AccountList()
         {
-            return _context.Accounts.ToList();
+            var result = _context.Accounts.Include(x => x.Roles).AsNoTracking().OrderByDescending(x => x.RoleID).ToList();
+            return result;
         }
 
         public void AddAccount(Accounts account)
