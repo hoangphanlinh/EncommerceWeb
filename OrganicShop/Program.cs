@@ -15,6 +15,8 @@ builder.Services.AddScoped<IRoleServices, RoleServices>();
 builder.Services.AddScoped<IAccountServices, AccountServices>();
 builder.Services.AddScoped<ICustomerServices, CustomerServices>();
 builder.Services.AddScoped<IProductServices, ProductServices>();
+builder.Services.AddScoped<ICategoryServices, CategoryServices>();
+builder.Services.AddScoped<IPageServices, PageServices>();
 
 var app = builder.Build();
 
