@@ -14,6 +14,15 @@ builder.Services.AddDbContext<AppDBContext>(options => options.UseSqlServer(buil
 builder.Services.AddScoped<IRoleServices, RoleServices>();
 builder.Services.AddScoped<IAccountServices, AccountServices>();
 builder.Services.AddScoped<ICustomerServices, CustomerServices>();
+builder.Services.AddScoped<IProductServices, ProductServices>();
+builder.Services.AddScoped<ICategoryServices, CategoryServices>();
+builder.Services.AddScoped<IPageServices, PageServices>();
+builder.Services.AddScoped<IPostServices, PostServices>();
+builder.Services.AddScoped<IPaymentServices, PaymentServices>();
+builder.Services.AddScoped<ITransactStatusServices, TransactStatusServices>();
+builder.Services.AddScoped<ILocationServices, LocationServices>();
+builder.Services.AddScoped<IShipperServices, ShipperServices>();
+
 
 var app = builder.Build();
 

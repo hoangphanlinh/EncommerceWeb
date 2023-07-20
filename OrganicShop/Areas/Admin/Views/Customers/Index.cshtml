@@ -23,18 +23,20 @@
                         <div class="m-b-10 m-r-15" >
                             <input type="text" class="form-control" style="min-width:300px;" placeholder=" search customer...">
                         </div>
+                        &nbsp;
                         <div class="m-b-10">
                             <select class="custom-select" id="idrole" name="idrole" style="min-width:200px;" @*asp-items="ViewBag.RoleList"*@>
                                 <option value="0" disable selected>Select role</option>
                             </select>
                         </div>
-
+                        &nbsp;
                         <div class="m-b-10">
                             <select class="custom-select" id="idstatus" name="idstatus" style="min-width:200px;" @*asp-items="ViewBag.StatusList"*@>
                                 <option value="" disable selected>Select status</option>
                             </select>
                         </div>
                     </div>
+                    &nbsp;
                     <button class="btn btn-primary" type="submit">Search</button>
                 </form>
             </div>
@@ -72,11 +74,17 @@
                                 <span class="badge badge-danger">Disable</span>
                             }
                         </td>
+                        
                         <td>
-                            <a class="btn btn btn-outline-info btn-square btn-sm btn-stone m-r-5" style="font-weight:300" asp-action="#">Views</a>
-                            <a class="btn btn btn-outline-warning btn-square btn-sm btn-stone m-r-5" style="font-weight:300" asp-action="#">Edit</a>
-
+                            <a asp-action="Details">
+                                <i class="mdi mdi-eye" style="font-size: 20px; color:black;padding-left: 15px;" title="View"></i>
+                            </a>
+                            <a asp-action="Edit">
+                                <i class="mdi mdi-pencil" title="Edit" style="font-size: 20px; color:black; padding-left: 15px;"></i>
+                            </a>
                         </td>
+
+                       
                     </tr>
                 }
             </tbody>

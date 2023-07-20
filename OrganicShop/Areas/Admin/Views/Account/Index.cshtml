@@ -45,7 +45,7 @@
             <th>Password</th>
             <th>Salt</th>
             <th>FullName</th>
-            <th>RoleID</th>
+            <th>Role</th>
             <th>LastLogin</th>
             <th>CreatedDate</th>
             <th >Status</th>
@@ -62,7 +62,7 @@
                 <td>@item.Password</td>
                 <td>@item.Salt</td>
                 <td>@item.FullName</td>
-                <td>@item.RoleID</td>
+                <td>@item.Roles.RoleName</td>
                 <td>@item.LastLogin</td>
                 <td>@item.CreatedDate</td>
                 <td>
@@ -75,10 +75,16 @@
                         <span class="badge badge-danger">Block</span>
                     }
                 </td>
+               
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.AccountID"><i class="mdi mdi-account-edit"></i></a>
-                    <a asp-action="Details" asp-route-id="@item.AccountID"><i class="mdi mdi-account-details"></i></a>
+                    <a asp-action="Details">
+                        <i class="mdi mdi-eye" style="font-size: 20px; color:black;padding-left: 15px;" title="View"></i>
+                    </a>
+                    <a asp-action="Edit">
+                        <i class="mdi mdi-pencil" title="Edit" style="font-size: 20px; color:black; padding-left: 15px;"></i>
+                    </a>
                 </td>
+               
             </tr>
 
         }
