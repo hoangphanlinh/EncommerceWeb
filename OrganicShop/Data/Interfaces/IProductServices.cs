@@ -10,6 +10,7 @@ namespace OrganicShop.Data.Interfaces
         Products GetProductById(int id);
         Products UpdateProduct(int id, Products product);
         IOrderedQueryable<Products> SearchProduct(string searchString,int categoryId);
+        IOrderedQueryable<Products> SearchListProduct(string searchString,int categoryId,string status);
 
         /*----Dropdown----*/
         List<Categories> GetCategories();

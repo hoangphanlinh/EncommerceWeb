@@ -85,5 +85,24 @@ namespace OrganicShop.Areas.Admin.Controllers
           
             return View(products);
         }
+
+        public IActionResult searchListProduct(int? page,string searchName, int categoryId, string status)
+        {
+            ViewBag.searchString = searchName;
+            ViewBag.categoryId = categoryId;
+            ViewBag.status = status;
+            var pageNumber = page == null || page <= 0 ? 1 : page.Value;
+            var pageSize = 5;
+            var lsproducts = _productservices.GetAllProduct();
+            if (!String.IsNullOrEmpty(searchName) || categoryId != 0 || !String.IsNullOrEmpty(status) || (categoryId != 0 && !String.IsNullOrEmpty(status)))
+            {
+                lsproducts = _productservices.SearchListProduct(searchName, categoryId, status);
+            }
+
+            PagedList<Products> models = new PagedList<Products>(lsproducts, pageNumber, pageSize);
+            ViewBag.CategoryList = new SelectList(_productservices.GetCategories(), "CatID", "CatName");
+            ViewBag.StatusList = _productservices.GetStatus();
+            return View(models);
+        }
     }
 }

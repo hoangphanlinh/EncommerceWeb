@@ -60,8 +60,12 @@ namespace OrganicShop.Data.Services
         {
             List<SelectListItem> Status = new()
             {
-                new SelectListItem { Value = "True", Text = "Active" },
-                new SelectListItem { Value = "False", Text = "Disable" }
+                new SelectListItem { Value = "1", Text = "Best Sell" },
+                new SelectListItem { Value = "2", Text = "Active" },
+                new SelectListItem { Value = "3", Text = "In Stock"},
+                new SelectListItem { Value = "4", Text = "Out Stock"},
+
+
             };
             return Status;
         }
@@ -74,32 +78,6 @@ namespace OrganicShop.Data.Services
             _context.SaveChanges();
             return product;
         }
-
-        //public IOrderedQueryable<Products> GetProductName(string? name)
-        //{
-          
-        //    var productlist = from product in _context.Products select product;
-        //    if(name != null)
-        //    {
-        //        productlist = productlist.Where(x => x.ProductName.Equals(name));
-
-        //    }
-        //    return (IOrderedQueryable<Products>)productlist;
-
-
-        //}
-
-        //public IOrderedQueryable<Products> GetProductCategory(int? categoryId)
-        //{
-        //    var productlist = from product in _context.Products  select product;
-        //    if (categoryId != 0)
-        //    {
-        //        productlist = productlist.Where(x => x.CatID ==categoryId);
-
-        //    }
-        //    return (IOrderedQueryable<Products>)productlist;
-        //}
-
         public IOrderedQueryable<Products> SearchProduct(string searchString, int categoryId)
         {
             var productlist = from product in _context.Products select product;
@@ -113,6 +91,47 @@ namespace OrganicShop.Data.Services
                 productlist = productlist.Where(x=>x.CatID ==  categoryId);
             }
             return (IOrderedQueryable<Products>)productlist;
+        }
+
+        public IOrderedQueryable<Products> SearchListProduct(string searchString, int categoryId, string status)
+        {
+            var productlist = from product in _context.Products select product;
+            if(!string.IsNullOrEmpty(searchString))
+            {
+                productlist = productlist.Where(x => x.ProductName.Contains(searchString));
+            }
+            if(categoryId != 0)
+            {
+                productlist = productlist.Where(x => x.CatID == categoryId);
+
+            }
+            if(status == "1")
+            {
+                productlist = productlist.Where(x => x.BestSellers==true);
+
+            }
+            if(status == "2")
+            {
+                productlist = productlist.Where(x => x.Active == true);
+
+            }
+            if(status == "3")
+            {
+                productlist = productlist.Where(x => x.UnitslnStock >0);
+
+            }
+            if (status == "4")
+            {
+                productlist = productlist.Where(x => x.UnitslnStock == 0);
+
+            }
+            if(categoryId !=0 &&  status == "1") {
+
+                productlist = productlist.Where(x => x.CatID == categoryId && x.BestSellers == true);
+
+            }
+            return (IOrderedQueryable<Products>)productlist;
+
         }
     }
 }
