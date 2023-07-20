@@ -1,0 +1,136 @@
+﻿@model OrganicShop.Models.Products
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<h3>Detail Product!</h3>
+<hr />
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault01">Product Name</label>
+            <input type="text" class="form-control" id="validationDefault01" asp-for="@Model.ProductName" readonly/>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault02">ShortDesc</label>
+            <input type="text" class="form-control" id="validationDefault02"  asp-for="@Model.ShortDesc" readonly/>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="exampleFormControlSelect14">Categories</label>
+            <input type="text" class="form-control" id="validationDefault02" asp-for="@Model.Categories.CatName" readonly />
+    </div>
+    </div>
+    <div class="form-row">
+        <label for="validationDefault01">Description</label>
+        <textarea type="text" class="form-control"  asp-for="@Model.Description" readonly></textarea>
+    </div>
+    <div class="form-row">
+        <label for="validationDefault01">Media</label>
+        <input type="file" class="form-control"  asp-for="@Model.Video" readonly/>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault03">Price</label>
+            <input type="number" class="form-control" id="validationDefault03"  asp-for="@Model.Price" readonly>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault04">Discount</label>
+            <input type="text" class="form-control" id="validationDefault04" asp-for="@Model.Discount" readonly>
+        </div>
+
+        <div class="col-md-4 mb-3"> 
+            <label for="validationDefault04">Thumb</label>
+            <input type="text" class="form-control" id="validationDefault04" asp-for="@Model.Thumb" readonly>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+        <label for="validationDefault03" style="color:red; border:medium">Best Sale</label>
+        @if (Model.BestSellers)
+        {
+            <input type="checkbox"  id="validationDefault04" checked readonly>
+
+        }
+        else
+        {
+            <input type="checkbox"  id="validationDefault04" readonly>
+
+        }
+
+        </div>
+    <div class="col-md-4 mb-3">
+        <label style="color:red; border:medium">Home Flag</label>
+        @if (Model.HomeFlag)
+        {
+            <input type="checkbox" id="validationDefault04" checked readonly>
+
+        }
+        else
+        {
+            <input type="checkbox" id="validationDefault04" readonly>
+
+        }
+
+    </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault03">Status</label>
+            @if(Model.Active)
+            {
+            <input type="text" value="Active" class="form-control-sm" id="validationDefault04" checked readonly>
+
+        }
+        else
+        {
+            <input type="text" value="Disable" class="form-control-sm" id="validationDefault04" readonly>
+
+        }
+
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault03">Tags</label>
+            <input type="text" class="form-control" id="validationDefault03"  asp-for="@Model.Tags" readonly>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault04">Title</label>
+            <input type="text" class="form-control" id="validationDefault04"  asp-for="@Model.Title" readonly>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault04">Alias</label>
+            <input type="text" class="form-control" id="validationDefault04"  asp-for="@Model.Alias" readonly>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault03">MetaDesc</label>
+        <input type="text" class="form-control" id="validationDefault03" asp-for="@Model.MetaDesc" readonly>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault04">MetaKey</label>
+        <input type="text" class="form-control" id="validationDefault04" asp-for="@Model.MetaKey" readonly>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault04">UnitslnStock</label>
+        <input type="text" class="form-control" id="validationDefault04" asp-for="@Model.UnitslnStock" readonly>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label for="validationDefault03">CreatedDate</label>
+        <input type="text" class="form-control" id="validationDefault03" value="@Model.CreatedDate.ToString()" readonly>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="validationDefault04">ModifiedDate</label>
+        <input type="text" class="form-control" id="validationDefault04" value="@Model.ModifiedDate.ToString()" readonly>
+        </div>
+    </div>
+<hr />
+<div>
+    <a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@Model.ProductID">Edit</a> |
+    <a class="btn btn-success btn-sm" asp-action="Index">Back to List</a>
+</div>
+

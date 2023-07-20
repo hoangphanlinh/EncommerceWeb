@@ -1,0 +1,114 @@
+﻿@model OrganicShop.Models.Products
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<h3>Edit Product!</h3>
+<hr />
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="@Model.ProductID " />
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault01">Product Name</label>
+            <input type="text" class="form-control" id="validationDefault01" placeholder="ProductName" asp-for="ProductName" />
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault02">ShortDesc</label>
+            <input type="text" class="form-control" id="validationDefault02" placeholder="ShortDesc" asp-for="ShortDesc" />
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="exampleFormControlSelect14">Categories</label>
+            @Html.DropDownList("CatID", ViewBag.CategoryList as SelectList, "Select Categories", new{@class="form-control"})
+        </div>
+    </div>
+    <div class="form-row">
+        <label for="validationDefault01">Description</label>
+        <textarea type="text" class="form-control" placeholder="Description" asp-for="Description"></textarea>
+    </div>
+    <div class="form-row">
+        <label for="validationDefault01">Media</label>
+        <input type="file" class="form-control" placeholder="Video" asp-for="Video" />
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault03">Price</label>
+            <input type="number" class="form-control" id="validationDefault03" placeholder="Price" asp-for="Price">
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault04">Discount</label>
+            <input type="text" class="form-control" id="validationDefault04" placeholder="Discount" asp-for="Discount">
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault04">Thumb</label>
+            <input type="text" class="form-control" id="validationDefault04" placeholder="Thumb" asp-for="Thumb">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label for="validationDefault03">Best Sale</label>
+            @Html.DropDownList("BestSellers", (IEnumerable<SelectListItem>)ViewBag.BestSellersList, new { @class = "form-control" })
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="validationDefault03">Status</label>
+            @Html.DropDownList("Active", (IEnumerable<SelectListItem>)ViewBag.StatusList, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault03">Tags</label>
+            <input type="text" class="form-control" id="validationDefault03" placeholder="Tags" asp-for="Tags">
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault04">Title</label>
+            <input type="text" class="form-control" id="validationDefault04" placeholder="Title" asp-for="Title">
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault04">Alias</label>
+            <input type="text" class="form-control" id="validationDefault04" placeholder="Alias" asp-for="Alias">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault03">MetaDesc</label>
+            <input type="text" class="form-control" id="validationDefault03" placeholder="MetaDesc" asp-for="MetaDesc">
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault04">MetaKey</label>
+            <input type="text" class="form-control" id="validationDefault04" placeholder="MetaKey" asp-for="MetaKey">
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault04">UnitslnStock</label>
+            <input type="text" class="form-control" id="validationDefault04" placeholder="UnitslnStock" asp-for="UnitslnStock">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label for="validationDefault03">CreatedDate</label>
+            <input type="datetime-local" class="form-control" id="validationDefault03" placeholder="MetaDesc" asp-for="CreatedDate">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="validationDefault04">ModifiedDate</label>
+            <input type="datetime-local" class="form-control" id="validationDefault04" placeholder="MetaKey" asp-for="ModifiedDate">
+        </div>
+    </div>
+    <div class="form-group">
+        <p style="color:red">Home Flag</p>
+        <label class="switch switch-info switch-pill form-control-label mr-2">
+            <input type="checkbox" class="switch-input form-check-input" asp-for="HomeFlag">
+            <span class="switch-label" style="background-color: #8a909d;"></span>
+            <span class="switch-handle"></span>
+        </label>
+    </div>
+    <button class="btn btn-primary" type="submit">Update</button>
+</form>
+<hr />
+<div>
+    <a asp-action="Index"><h5>Back to List</h5></a>
+</div>
+

@@ -20,6 +20,8 @@ builder.Services.AddScoped<IPageServices, PageServices>();
 builder.Services.AddScoped<IPostServices, PostServices>();
 builder.Services.AddScoped<IPaymentServices, PaymentServices>();
 builder.Services.AddScoped<ITransactStatusServices, TransactStatusServices>();
+builder.Services.AddScoped<ILocationServices, LocationServices>();
+builder.Services.AddScoped<IShipperServices, ShipperServices>();
 
 
 var app = builder.Build();

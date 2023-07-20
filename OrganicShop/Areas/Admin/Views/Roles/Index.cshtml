@@ -24,15 +24,17 @@
             <td style="color:black" scope="row">@item.RoleId</td>
             <td style="color:black" >@item.RoleName</td>
             <td style="color:black">@item.RoleDescription</td>
-            <th class="text-center">
-                <a asp-action="Edit" asp-route-id="@item.RoleId">
-                    <i class="mdi mdi-open-in-new"></i>
-                </a>
-                <a asp-action="Delete" asp-route-id="@item.RoleId">
-                    <i class="mdi mdi-close text-danger"></i>
-                </a>
+                <td>
+                    <a asp-action="Details">
+                        <i class="mdi mdi-eye" style="font-size: 20px; color:black;padding-left: 15px;" title="View"></i>
+                    </a>
+                    <a asp-action="Edit">
+                        <i class="mdi mdi-pencil" title="Edit" style="font-size: 20px; color:black; padding-left: 15px;"></i>
+                    </a>
+                </td>
+               
 
-            </th>
+            
         </tr>
         }
       
