@@ -23,6 +23,9 @@ namespace OrganicShop.Data
         public DbSet<Shippers> Shippers { get; set; }
         public DbSet<Products> Products { get; set; }
         public DbSet<TransactStatus> TransactStatus { get; set; }
+        public DbSet<City> City { get; set; }
+        public DbSet<Ward> Ward { get; set; }
+        public DbSet<District> District { get; set; }
 
     }
 }

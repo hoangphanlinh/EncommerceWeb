@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using OrganicShop.Data.Interfaces;
+using OrganicShop.Data.Services;
+using OrganicShop.Data.ViewModels;
 using OrganicShop.Models;
 using X.PagedList;
 
@@ -16,83 +17,101 @@ namespace OrganicShop.Areas.Admin.Controllers
             _customerServices = customerServices;
         }
         // GET: CustomersController
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, string? searchString = null, string? status = null)
         {
-            var pageNumber = page == null || page<=0 ?1 : page.Value;
+            ViewBag.SearchString = searchString;
+            ViewBag.Status = status;
+            var pageNumber = page == null || page <= 0 ? 1 : page.Value;
             var pageSize = 5;
             var lsCustomers = _customerServices.GetAllCustomer();
-            PagedList<Customers> models = new PagedList<Customers>(lsCustomers, pageNumber,pageSize);
-            ViewBag.CurrentPage = pageNumber;
+            if (!String.IsNullOrEmpty(searchString) || !String.IsNullOrEmpty(status))
+            {
+                lsCustomers = _customerServices.SearchCustomer(searchString, status);
+            }
+            PagedList<Customers> models = new PagedList<Customers>(lsCustomers, pageNumber, pageSize);
+            ViewBag.StatusList = _customerServices.GetStatus();
             return View(models);
         }
 
         // GET: CustomersController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var model = _customerServices.Details(id);
+            return View(model);
         }
-
-        // GET: CustomersController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: CustomersController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
+        [HttpGet]
         // GET: CustomersController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            ViewBag.StatusList = _customerServices.GetStatus().ToList();
+            var customer = _customerServices.getCustomerById(id);
+            if (customer == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                var viewModel = new UpdateCustomerViewModel()
+                {
+                    CustomerID = customer.CustomerID,
+                    FullName = customer.FullName,
+                    BirthDay = customer.BirthDay,
+                    Address = customer.Address,
+                    Email = customer.Email,
+                    Phone = customer.Phone,
+                    Active = customer.Active,
+                };
+                return View(viewModel);
+
+            }
         }
 
         // POST: CustomersController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(UpdateCustomerViewModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                _customerServices.Edit(model);
+                return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
 
-        // GET: CustomersController/Delete/5
-        public ActionResult Delete(int id)
+        [HttpGet]
+        public ActionResult SearchCustomers(int? page, string? searchString = null, string? status = null,int city=0,int district =0, int ward =0)
         {
-            return View();
+            ViewBag.city = city;
+            ViewBag.district = district;
+            ViewBag.ward = ward;
+            ViewBag.SearchString = searchString;
+            ViewBag.Status = status;
+            var pageNumber = page == null || page <= 0 ? 1 : page.Value;
+            var pageSize = 5;
+            var lsCustomers = _customerServices.GetAllCustomer();
+            if (!String.IsNullOrEmpty(searchString) || !String.IsNullOrEmpty(status) || city>0 || (city >0 && district >0) || (city >0 && district > 0 && ward >0))
+            {
+                lsCustomers = _customerServices.FilterCustomers(searchString, status,city,district,ward);
+            }
+            PagedList<Customers> models = new PagedList<Customers>(lsCustomers, pageNumber, pageSize);
+            ViewBag.StatusList = _customerServices.GetStatus();
+     
+            return View(models);
         }
-
-        // POST: CustomersController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+       
+        public JsonResult GetCity()
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return Json(new SelectList(_customerServices.GetCity(),"cityId","cityName"));
+        }
+        public JsonResult getDistrict(int id)
+        {
+            return Json(new SelectList(_customerServices.GetDistrict(id), "DistrictId", "DistrictName"));
+        }
+        
+        public JsonResult getWard(int id)
+        {
+            return Json (new SelectList(_customerServices.GetWard(id), "WardId", "WardName"));
         }
     }
 }
