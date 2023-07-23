@@ -16,6 +16,7 @@ namespace OrganicShop.Data.Interfaces
         List<Categories> GetCategories();
         List<SelectListItem> GetStatus();
         List<SelectListItem> GetBestSeller();
+        List<SelectListItem> GetActive();
 
     }
 }

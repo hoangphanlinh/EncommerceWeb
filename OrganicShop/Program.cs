@@ -1,10 +1,12 @@
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using OrganicShop.Data;
 using OrganicShop.Data.Interfaces;
 using OrganicShop.Data.Services;
 using System.Configuration;
+using System.Web.Optimization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +24,7 @@ builder.Services.AddScoped<IPaymentServices, PaymentServices>();
 builder.Services.AddScoped<ITransactStatusServices, TransactStatusServices>();
 builder.Services.AddScoped<ILocationServices, LocationServices>();
 builder.Services.AddScoped<IShipperServices, ShipperServices>();
+                                           
 
 
 var app = builder.Build();

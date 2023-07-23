@@ -81,9 +81,9 @@ namespace OrganicShop.Data.Services
         public IOrderedQueryable<Products> SearchProduct(string searchString, int categoryId)
         {
             var productlist = from product in _context.Products select product;
-            if(!string.IsNullOrEmpty(searchString))
+            if (!string.IsNullOrEmpty(searchString))
             {
-                productlist = productlist.Where(x =>x.ProductName.Contains(searchString));
+                productlist = productlist.Where(x => x.ProductName.Contains(searchString));
 
             }
             if(categoryId != 0)
@@ -132,6 +132,19 @@ namespace OrganicShop.Data.Services
             }
             return (IOrderedQueryable<Products>)productlist;
 
+        }
+
+        public List<SelectListItem> GetActive()
+        {
+            List<SelectListItem> Status = new()
+            {
+                new SelectListItem { Value = "True", Text = "Active" },
+                new SelectListItem { Value = "False", Text = "Disable" },
+              
+
+
+            };
+            return Status;
         }
     }
 }

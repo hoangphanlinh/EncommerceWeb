@@ -65,7 +65,7 @@ namespace OrganicShop.Areas.Admin.Controllers
             }
             ViewBag.CategoryList = new SelectList(_productservices.GetCategories(), "CatID", "CatName");
             ViewBag.BestSellersList = _productservices.GetBestSeller();
-            ViewBag.StatusList = _productservices.GetStatus();
+            ViewBag.StatusList = _productservices.GetActive();
             return View(_product);
         }
         [HttpPost]

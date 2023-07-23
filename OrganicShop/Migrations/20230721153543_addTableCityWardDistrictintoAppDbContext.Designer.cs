@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OrganicShop.Data;
 
@@ -11,9 +12,10 @@ using OrganicShop.Data;
 namespace OrganicShop.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    partial class AppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230721153543_addTableCityWardDistrictintoAppDbContext")]
+    partial class addTableCityWardDistrictintoAppDbContext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -197,13 +199,13 @@ namespace OrganicShop.Migrations
                     b.Property<DateTime?>("BirthDay")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("City")
+                    b.Property<int?>("City")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("District")
+                    b.Property<int?>("District")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
@@ -224,7 +226,7 @@ namespace OrganicShop.Migrations
                     b.Property<string>("Salt")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Ward")
+                    b.Property<int?>("Ward")
                         .HasColumnType("int");
 
                     b.HasKey("CustomerID");
@@ -695,21 +697,15 @@ namespace OrganicShop.Migrations
                 {
                     b.HasOne("OrganicShop.Models.City", "city")
                         .WithMany()
-                        .HasForeignKey("City")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("City");
 
                     b.HasOne("OrganicShop.Models.District", "district")
                         .WithMany()
-                        .HasForeignKey("District")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("District");
 
                     b.HasOne("OrganicShop.Models.Ward", "ward")
                         .WithMany()
-                        .HasForeignKey("Ward")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("Ward");
 
                     b.Navigation("city");
 

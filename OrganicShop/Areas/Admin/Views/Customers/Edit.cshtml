@@ -1,0 +1,53 @@
+﻿@model OrganicShop.Data.ViewModels.UpdateCustomerViewModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">  <a href="#">Home  </a>  </li>
+        <li class="breadcrumb-item">  <a asp-action="Index">Customers </a> </li>
+        <li class="breadcrumb-item active" aria-current="page">Edit </li>
+    </ol>
+</nav>
+<form asp-action="Edit" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="@Model.CustomerID " />
+<div class="form-row">
+    <div class="col-md-4 mb-3">
+        <label for="validationDefault01">Full Name</label>
+        <input type="text" class="form-control" id="validationDefault01" asp-for="@Model.FullName" readonly />
+    </div>
+    <div class="col-md-4 mb-3">
+        <label for="validationDefault02">Phone Number</label>
+        <input type="text" class="form-control" id="validationDefault02" asp-for="@Model.Phone" readonly />
+    </div>
+    <div class="col-md-4 mb-3">
+        <label for="exampleFormControlSelect14">Birthday</label>
+        <input type="text" class="form-control" id="validationDefault02" asp-for="@Model.BirthDay" readonly />
+    </div>
+</div>
+<div class="form-row">
+    <div class="col-md-6 mb-3">
+        <label for="validationDefault01">Address</label>
+        <input type="text" class="form-control" id="validationDefault01" asp-for="@Model.Address" readonly />
+    </div>
+    <div class="col-md-6 mb-3">
+        <label for="validationDefault02">Email</label>
+        <input type="text" class="form-control" id="validationDefault02" asp-for="@Model.Email" readonly />
+    </div>
+</div>
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label for="validationDefault03">Status</label>
+            @Html.DropDownList("Active", ViewBag.StatusList as List<SelectListItem>, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Active)
+        </div>
+    </div>
+<button class="btn btn-primary" type="submit">Update</button>
+</form>
+<hr />
+<div>
+    <a asp-action="Index"><h5>Back to List</h5></a>
+</div>
