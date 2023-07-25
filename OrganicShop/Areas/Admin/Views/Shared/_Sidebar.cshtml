@@ -208,26 +208,13 @@
     </li>
 
     <!--Pages -->
-    <li class="has-sub">
-        <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#pages"
-           aria-expanded="false" aria-controls="customization">
+    <li>
+        <a class="sidenav-item-link" asp-area="Admin" asp-controller="Pages" asp-action="Index">
             <i class="mdi mdi-google-pages"></i>
-            <span class="nav-text">Pages </span> <b class="caret"></b>
+            <span class="nav-text">Pages</span>
         </a>
-        <ul class="collapse" id="pages"
-            data-parent="#sidebar-menu">
-            <div class="sub-menu">
-
-            <li>
-                <a class="sidenav-item-link" asp-area="Admin" asp-controller="Pages" asp-action="Index">
-                    <span class="nav-text">Page List</span>
-
-                </a>
-            </li>
-
-            </div>
-        </ul>
     </li>
+
 
     <!--Shipper-->
     <li class="has-sub">

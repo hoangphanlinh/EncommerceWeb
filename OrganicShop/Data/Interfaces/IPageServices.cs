@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using OrganicShop.Models;
+using static OrganicShop.Data.ViewModels.PagesViewModel;
 
 namespace OrganicShop.Data.Interfaces
 {
@@ -7,5 +8,11 @@ namespace OrganicShop.Data.Interfaces
     {
         IOrderedQueryable<Pages> GetAllPages();
         List<SelectListItem> GetPublished();
+        void Create(Pages page);
+        void Update(UpdatePageViewModel page);
+        void Delete(int id);
+        Pages GetById(int id);
+        IOrderedQueryable<Pages> searchPage(string searchString);
+
     }
 }
