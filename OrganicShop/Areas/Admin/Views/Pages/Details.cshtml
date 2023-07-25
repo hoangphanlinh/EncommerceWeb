@@ -1,0 +1,75 @@
+﻿@model OrganicShop.Models.Pages
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<h3>Details Page!</h3>
+<hr />
+
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault01">Page Name</label>
+            <input type="text" class="form-control" id="validationDefault01" placeholder="PageName" asp-for="PageName" />
+        </div>
+    </div>
+    <div class="form-row">
+        <label for="validationDefault02">Contents</label>
+        <textarea type="text" class="form-control" placeholder="Contents" asp-for="Contents"></textarea>
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault01">Thumb</label>
+            <input type="text" class="form-control" placeholder="Thumb" asp-for="Thumb" />
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="exampleFormControlSelect14">Published</label>
+        @if (Model.Published)
+        {
+            <input type="text" value="Public" class="form-control" id="validationDefault04" readonly/>
+
+        }
+        else
+        {
+            <input type="text" value="Non-Public" class="form-control" id="validationDefault04" readonly/>
+
+        }
+        </div>
+    </div>
+    <div class="form-row">
+
+        <label for="validationDefault03">Title</label>
+        <textarea type="number" class="form-control" id="validationDefault03" placeholder="Title" asp-for="Title"></textarea>
+
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault04">MetaDesc</label>
+            <input type="text" class="form-control" id="validationDefault04" placeholder="MetaDesc" asp-for="MetaDesc">
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault04">MetaKey</label>
+            <input type="text" class="form-control" id="validationDefault04" placeholder="MetaKey" asp-for="MetaKey">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault04">Alias</label>
+            <input type="text" class="form-control" id="validationDefault04" placeholder="Alias" asp-for="Alias">
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault03">CreatedDate</label>
+            <input type="text" class="form-control" id="validationDefault03" placeholder="CreatedDate" asp-for="CreatedDate">
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault04">Ordering</label>
+            <input type="text" class="form-control" id="validationDefault04" placeholder="Ordering" asp-for="Ordering">
+        </div>
+    </div>
+<hr />
+<div>
+    <a asp-action="Index"><h5>Back to List</h5></a>
+</div>
+
