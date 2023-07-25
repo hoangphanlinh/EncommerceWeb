@@ -1,0 +1,86 @@
+﻿@model OrganicShop.Data.ViewModels.UpdateCategoriesViewModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>Update Product!</h3>
+<hr />
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="@Model.CatID " />
+
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault01">Category Name</label>
+            <input type="text" class="form-control" id="validationDefault01" placeholder="Category Name" asp-for="CatName" />
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault02">ParentID</label>
+            <input type="text" class="form-control" id="validationDefault02" placeholder="ParentID" asp-for="ParentID" />
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault04">Thumb</label>
+            <input type="text" class="form-control" id="validationDefault04" placeholder="Thumb" asp-for="Thumb">
+        </div>
+    </div>
+    <div class="form-row">
+        <label for="validationDefault01">Description</label>
+        <textarea type="text" class="form-control" placeholder="Description" asp-for="Description"></textarea>
+    </div>
+    <div class="form-row">
+        <label for="validationDefault01">Levels</label>
+        <input type="file" class="form-control" placeholder="Levels" asp-for="Levels" />
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault03">Ordering</label>
+            <input type="text" class="form-control" id="validationDefault03" placeholder="Ordering" asp-for="Ordering">
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="exampleFormControlSelect14">Published</label>
+            @Html.DropDownList("Published", ViewBag.Published as List<SelectListItem>, new { @class = "form-control" })
+
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault04">Title</label>
+            <input type="text" class="form-control" id="validationDefault04" placeholder="Title" asp-for="Title">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault03">Alias</label>
+            <input type="text" class="form-control" id="validationDefault03" placeholder="Alias" asp-for="Alias">
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault04">MetaDesc</label>
+            <input type="text" class="form-control" id="validationDefault04" placeholder="MetaDesc" asp-for="MetaDesc">
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault04">MetaKey</label>
+            <input type="text" class="form-control" id="validationDefault04" placeholder="MetaKey" asp-for="MetaKey">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault03">Cover</label>
+            <input type="text" class="form-control" id="validationDefault03" placeholder="Cover" asp-for="Cover">
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault04">SchemeMarkup</label>
+            <input type="text" class="form-control" id="validationDefault04" placeholder="SchemeMarkup" asp-for="SchemeMarkup">
+        </div>
+
+    </div>
+    <button class="btn btn-primary" type="submit">Update</button>
+</form>
+<hr />
+<div>
+    <a asp-action="Index"><h5>Back to List</h5></a>
+</div>
+
+

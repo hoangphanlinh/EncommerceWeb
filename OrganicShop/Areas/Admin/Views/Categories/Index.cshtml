@@ -21,7 +21,7 @@
                 <form asp-action="Index" method="get" class="form-inline">
                     <div class="d-md-flex">
                         <div class="m-b-10 m-r-15">
-                            <input type="text" class="form-control" style="min-width:300px;" placeholder=" Search category..." />
+                            <input type="text" class="form-control" style="min-width:300px;" name="searchString" value="@ViewBag.SearchString" placeholder=" Search category name..." />
                         </div>
                         </div>
                     <button type="submit"><i class="mdi mdi-table-search" style="font-size: 30px; color:black;"></i></button>
@@ -63,10 +63,10 @@
                                 }
                             </td>
                             <td>
-                                <a asp-action="Details">
+                                <a asp-action="Detail" asp-route-id="@item.CatID">
                                     <i class="mdi mdi-eye" style="font-size: 20px; color:black;padding-left: 15px;" title="View"></i>
                                 </a>
-                                <a asp-action="Edit">
+                                <a asp-action="Edit" asp-route-id="@item.CatID">
                                     <i class="mdi mdi-pencil" title="Edit" style="font-size: 20px; color:black; padding-left: 15px;"></i>
                                 </a>
                             </td>
@@ -82,7 +82,7 @@
     <div class="card-footer" style="background-color:white">
         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
         <br /><br />
-        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page,searchString = ViewBag.SearchString }),
         new PagedListRenderOptions(){
         ContainerDivClasses = new[] { "pagination-container" },
         UlElementClasses = new[] { "pagination" },

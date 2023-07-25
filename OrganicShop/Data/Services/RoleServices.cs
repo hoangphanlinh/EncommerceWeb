@@ -21,15 +21,13 @@ namespace OrganicShop.Data.Services
         public void DeleteRole(int id)
         {
             var _role = _context.Roles.FirstOrDefault(n => n.RoleId == id);
-            if (_role != null)
+            if(_role != null)
             {
                 _context.Roles.Remove(_role);
-                _context.SaveChanges();
             }
-            else
-            {
-                NotFound();
-            }
+            _context.SaveChanges();
+
+
         }
 
         public List<Roles> GetAllRole()

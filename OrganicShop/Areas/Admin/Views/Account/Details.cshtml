@@ -1,76 +1,56 @@
 ﻿@model OrganicShop.Models.Accounts
-
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
+
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a asp-action="Index">Accounts</a>  </li>
-        <li class="breadcrumb-item active" aria-current="page">Details </li>
+        <li class="breadcrumb-item">  <a href="#">Home  </a>  </li>
+        <li class="breadcrumb-item">  <a asp-action="Index">Accounts </a> </li>
+        <li class="breadcrumb-item active" aria-current="page">Detail </li>
     </ol>
 </nav>
-<div style="color:black">
-    <h4></h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Salt)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Salt)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Active)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Active)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FullName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FullName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Roles)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RoleID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.LastLogin)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.LastLogin)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreatedDate)
-        </dd>
-    </dl>
+<div class="form-row">
+    <div class="col-md-4 mb-3">
+        <label for="validationDefault01">Full Name</label>
+        <input type="text" class="form-control" id="validationDefault01" asp-for="@Model.FullName" readonly />
+    </div>
+    <div class="col-md-4 mb-3">
+        <label for="validationDefault02">Phone Number</label>
+        <input type="text" class="form-control" id="validationDefault02" asp-for="@Model.Phone" readonly />
+    </div>
+    <div class="col-md-4 mb-3">
+        <label for="validationDefault02">CreatedDate</label>
+        <input type="text" class="form-control" id="validationDefault02" asp-for="@Model.CreatedDate" readonly />
+    </div>
 </div>
+
+<div class="form-row">
+    <div class="col-md-4 mb-3">
+        <label for="validationDefault01">Address</label>
+        <input type="text" class="form-control" id="validationDefault01" asp-for="@Model.Roles.RoleName" readonly />
+    </div>
+    <div class="col-md-4 mb-3">
+        <label for="validationDefault02">Email</label>
+        <input type="text" class="form-control" id="validationDefault02" asp-for="@Model.Email" readonly />
+    </div>
+    <div class="col-md-4 mb-3">
+        <label for="validationDefault03">Status</label>
+        @if (Model.Active)
+        {
+            <input type="text" value="Active" style="color:greenyellow; font-weight:500" class="form-control-sm" id="validationDefault04" checked readonly>
+
+        }
+        else
+        {
+            <input type="text" value="Disable" style="color:red; font-weight:500" class="form-control-sm" id="validationDefault04" readonly>
+
+        }
+
+    </div>
+</div>
+<hr />
 <div>
-    <a class="btn btn-secondary btn-sm" asp-action="Edit" asp-route-id="@Model.AccountID">Edit</a> |
-    <a class="btn btn-success btn-sm" asp-action="Index">Back to List</a>
+    <a asp-action="Index"><h5>Back to List</h5></a>
 </div>

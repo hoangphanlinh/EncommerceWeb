@@ -62,22 +62,6 @@ namespace OrganicShop.Areas.Admin.Controllers
             }
             return View(model);
         }
-        public IActionResult Delete (int id)
-        {
-            var role = _roleServices.GetRoleById(id);
-            if (role == null)
-            {
-                return NotFound();
-            }
-            return View(role);
-        }
-        [HttpPost,ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
-        {
-            _roleServices.DeleteRole(id);
-            return RedirectToAction("Index");
-        }
         
     }
 }
