@@ -24,7 +24,7 @@ namespace OrganicShop.Data.Services
 
         public Accounts GetAccountById(int id)
         {
-            var account = _context.Accounts.FirstOrDefault(n => n.AccountID == id);
+            var account = _context.Accounts.Include(x=>x.Roles).FirstOrDefault(n => n.AccountID == id);
             if (account == null)
             {
                 return NotFound();
@@ -63,26 +63,26 @@ namespace OrganicShop.Data.Services
             var accounts = from account in _context.Accounts select account;
             if(roleId != 0)
             {
-                accounts = accounts.Where(x => x.RoleID == roleId);
+                accounts = accounts.Include(x=>x.Roles).Where(x => x.RoleID == roleId);
             }
             if (status == "True")
             {
-                accounts = accounts.Where(x => x.Active == true);
+                accounts = accounts.Include(x => x.Roles).Where(x => x.Active == true);
 
             }
             if(status == "False")
             {
-                accounts = accounts.Where(x => x.Active == false);
+                accounts = accounts.Include(x => x.Roles).Where(x => x.Active == false);
 
             }
             if (status =="False" && roleId != 0)
             {
-                accounts = accounts.Where(x => x.Active == false && x.RoleID==roleId);
+                accounts = accounts.Include(x => x.Roles).Where(x => x.Active == false && x.RoleID==roleId);
 
             }
             if(status == "True" && roleId != 0)
             {
-                accounts = accounts.Where(x => x.Active == true && x.RoleID == roleId);
+                accounts = accounts.Include(x => x.Roles).Where(x => x.Active == true && x.RoleID == roleId);
 
             }
 
