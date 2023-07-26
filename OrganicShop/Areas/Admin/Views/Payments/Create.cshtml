@@ -1,0 +1,29 @@
+﻿@model OrganicShop.Models.Payments
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Create</h1>
+<hr />
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault01">Type</label>
+            <input type="text" class="form-control" id="validationDefault01" placeholder="Type" asp-for="Type"/>
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault01">Allowed</label>
+            <select class="custom-select" style="min-width:200px;" asp-items="ViewBag.Allowed">
+                <option value="" disable selected>Allow</option>
+            </select>
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Create</button>
+
+ </form>
+ <hr />
+<div>
+    <a asp-action="Index"><h5>Back to List</h5></a>
+</div>
