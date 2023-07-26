@@ -1,0 +1,29 @@
+﻿@model OrganicShop.Data.ViewModels.PaymentViewModel.UpdatePaymentViewModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Edit</h1>
+<hr />
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="PaymentID"/>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault01">Type</label>
+            <input type="text" class="form-control" id="validationDefault01" placeholder="Type" asp-for="Type" />
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="validationDefault01">Allowed</label>
+            @Html.DropDownList("Allowed", ViewBag.Status as List<SelectListItem>, new { @class = "form-control" })
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Update</button>
+
+</form>
+<hr />
+<div>
+    <a asp-action="Index"><h5>Back to List</h5></a>
+</div>
+
