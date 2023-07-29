@@ -293,6 +293,25 @@ namespace OrganicShop.Migrations
                     b.ToTable("Locations");
                 });
 
+            modelBuilder.Entity("OrganicShop.Models.NewsDirectory", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("NewsDirectories");
+                });
+
             modelBuilder.Entity("OrganicShop.Models.OrderDetails", b =>
                 {
                     b.Property<int>("OrderDetailID")
@@ -461,9 +480,6 @@ namespace OrganicShop.Migrations
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CatID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Contents")
                         .HasColumnType("nvarchar(max)");
 
@@ -475,6 +491,9 @@ namespace OrganicShop.Migrations
 
                     b.Property<string>("MetaKey")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("NewDirID")
+                        .HasColumnType("int");
 
                     b.Property<bool>("Published")
                         .HasColumnType("bit");
@@ -504,7 +523,7 @@ namespace OrganicShop.Migrations
 
                     b.HasIndex("AccountID");
 
-                    b.HasIndex("CatID");
+                    b.HasIndex("NewDirID");
 
                     b.ToTable("Posts");
                 });
@@ -775,13 +794,13 @@ namespace OrganicShop.Migrations
                         .WithMany()
                         .HasForeignKey("AccountID");
 
-                    b.HasOne("OrganicShop.Models.Categories", "Categories")
+                    b.HasOne("OrganicShop.Models.NewsDirectory", "NewsDirectory")
                         .WithMany()
-                        .HasForeignKey("CatID");
+                        .HasForeignKey("NewDirID");
 
                     b.Navigation("Accounts");
 
-                    b.Navigation("Categories");
+                    b.Navigation("NewsDirectory");
                 });
 
             modelBuilder.Entity("OrganicShop.Models.Products", b =>
