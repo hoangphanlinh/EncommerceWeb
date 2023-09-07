@@ -9,7 +9,7 @@ namespace OrganicShop.Data.Interfaces
         IOrderedQueryable<Pages> GetAllPages();
         List<SelectListItem> GetPublished();
         void Create(Pages page);
-        void Update(UpdatePageViewModel page);
+        void Update(Pages page,string alias, string photo);
         void Delete(int id);
         Pages GetById(int id);
         IOrderedQueryable<Pages> searchPage(string searchString);

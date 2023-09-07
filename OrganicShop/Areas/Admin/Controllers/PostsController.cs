@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
@@ -15,9 +16,11 @@ namespace OrganicShop.Areas.Admin.Controllers
     public class PostsController : Controller
     {
         private readonly IPostServices _postServices;
-        public PostsController(IPostServices postServices)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public PostsController(IPostServices postServices, IWebHostEnvironment webHostEnvironment)
         {
             _postServices = postServices;
+            _webHostEnvironment = webHostEnvironment;
         }
         public IActionResult Index(int? page)
         {
@@ -36,32 +39,66 @@ namespace OrganicShop.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PostID,Title,SContents,Contents,Thumb,Published,Alias,CreatedDate,Author,AccountID,Tags,NewDirID,isHot,isNewfeed,MetaDesc,MetaKey,Views")] Posts posts, IFormFile fThumb )
+        public async Task<IActionResult> Create(CreatePostViewModel model)
         {
             if (ModelState.IsValid)
             {
                 //Xu ly Thumb
-                if(fThumb != null)
+                string uniuefilename = string.Empty;
+                var files = HttpContext.Request.Form.Files;
+                foreach (var Image in files)
                 {
-                    string extension = Path.GetExtension(fThumb.FileName);
-                    string imageName = Helpper.Utilities.SEOUrl(posts.Title) + extension;
-                    posts.Thumb = await Utilities.UpLoadFile(fThumb, @"news", imageName.ToLower());
-                }
-                if (string.IsNullOrEmpty(posts.Thumb)) posts.Thumb = "default.jpg";
-                posts.Alias = Utilities.SEOUrl(posts.Title);
+                    if (Image != null && Image.Length > 0)
+                    {
+                        var file = Image;
 
-                _postServices.Create(posts);
+                        var uploads = Path.Combine(_webHostEnvironment.WebRootPath, "images/news");
+                        if (file.Length > 0)
+                        {
+                            // var fileName = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(file.FileName);
+                            var fileName = Guid.NewGuid().ToString().Replace("-", "") + file.FileName;
+                            using (var fileStream = new FileStream(Path.Combine(uploads, fileName), FileMode.Create))
+                            {
+                                await file.CopyToAsync(fileStream);
+                                uniuefilename = fileName;
+                            }
+
+                        }
+                    }
+                }
+                var post = new Posts()
+                {
+                    PostID = model.PostID,
+                    Title = model.Title,
+                    SContents = model.Contents,
+                    Contents = model.Contents,
+                    Thumb = uniuefilename,
+                    Published = model.Published,
+                    Alias = Utilities.SEOUrl(model.Title),
+                    CreatedDate = model.CreatedDate,
+                    Author = model.Author,
+                    AccountID = model.AccountID,
+                    Tags = model.Tags,
+                    NewDirID = model.NewDirID,
+                    isHot = model.isHot,
+                    isNewfeed = model.isNewfeed,
+                    MetaDesc = model.MetaDesc,
+                    MetaKey = model.MetaKey,
+                    Views = model.Views
+                };
+                _postServices.Create(post);
                 return RedirectToAction("Index");
             }
+           
             ViewBag.lsNew = new SelectList(_postServices.GetNewsDirectories(), "ID", "Name");
 
-            return View(posts);
+            return View(model);
         }
         [HttpGet]
         public IActionResult Details(int id)
         {
-           var _post = _postServices.GetPostById(id);
-           if(_post != null)
+            var _post = _postServices.GetPostById(id);
+            if (_post != null)
             {
                 var viewModel = new UpdatePostViewModel()
                 {
@@ -91,66 +128,53 @@ namespace OrganicShop.Areas.Admin.Controllers
             var _post = _postServices.GetPostById(id);
             ViewBag.lsNew = new SelectList(_postServices.GetNewsDirectories(), "ID", "Name");
 
-            if ( _post == null )
+            if (_post == null)
             {
                 return NotFound();
             }
             else
             {
-                var viewModel = new UpdatePostViewModel()
-                {
-                    PostID = _post.PostID,
-                    Title = _post.Title,
-                    SContents = _post.SContents,
-                    Contents = _post.Contents,
-                    Thumb = _post.Thumb,
-                    Published = _post.Published,
-                    Alias = _post.Alias,
-                    CreatedDate = _post.CreatedDate,
-                    Author = _post.Author,
-                    AccountID = _post.AccountID,
-                    Tags = _post.Tags,
-                    NewDirID = _post.NewDirID,
-                    isHot = _post.isHot,
-                    isNewfeed = _post.isNewfeed,
-                    MetaDesc = _post.MetaDesc,
-                    MetaKey = _post.MetaKey,
-                    Views = _post.Views,
-                };
-                return View(viewModel);
+                return View(_post);
 
             }
 
-           
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(UpdatePostViewModel posts,IFormFile fThumb)
+        public async Task<IActionResult> Edit(Posts posts)
         {
             if (ModelState.IsValid)
             {
-                try
+                Posts model = _postServices.GetPostById(posts.PostID);
+                string uniuefilename = model.Thumb ;
+                var files = HttpContext.Request.Form.Files;
+                foreach (var Image in files)
                 {
-                    if (fThumb != null)
+                    if (Image != null && Image.Length > 0)
                     {
-                        string extension = Path.GetExtension(fThumb.FileName);
-                        string imageName = Helpper.Utilities.SEOUrl(posts.Title) + extension;
-                        posts.Thumb = await Utilities.UpLoadFile(fThumb, @"news", imageName.ToLower());
+                        var file = Image;
+
+                        var uploads = Path.Combine(_webHostEnvironment.WebRootPath, "images/news");
+                        if (file.Length > 0)
+                        {
+                            // var fileName = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(file.FileName);
+                            var fileName = Guid.NewGuid().ToString().Replace("-", "") + file.FileName;
+                            using (var fileStream = new FileStream(Path.Combine(uploads, fileName), FileMode.Create))
+                            {
+                                await file.CopyToAsync(fileStream);
+                                uniuefilename = fileName;
+                            }
+
+                        }
                     }
-                    if (string.IsNullOrEmpty(posts.Thumb)) posts.Thumb = "default.jpg";
-                    posts.Alias = Utilities.SEOUrl(posts.Title);
-
-                    _postServices.Update(posts);
-
-                    return RedirectToAction("Index");
-                }catch(Exception)
-                {
-                    return NotFound();
                 }
+                _postServices.Update(posts, uniuefilename,Utilities.SEOUrl(posts.Title));
+                return RedirectToAction("Index");
             }
             ViewBag.lsNew = new SelectList(_postServices.GetNewsDirectories(), "ID", "Name");
 
-            return View(posts);
+            return View();
         }
         public IActionResult Delete(int id)
         {

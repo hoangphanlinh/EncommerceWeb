@@ -27,5 +27,6 @@ namespace OrganicShop.Models
         public string? MetaDesc { get; set; }
         public string? MetaKey { get; set; }
         public int? Views { get; set; }
+      
     }
 }

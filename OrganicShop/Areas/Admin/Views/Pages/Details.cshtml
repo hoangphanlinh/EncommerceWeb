@@ -1,75 +1,109 @@
 ﻿@model OrganicShop.Models.Pages
-
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-<h3>Details Page!</h3>
-<hr />
-
-    <div class="form-row">
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault01">Page Name</label>
-            <input type="text" class="form-control" id="validationDefault01" placeholder="PageName" asp-for="PageName" />
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">  <a asp-controller="Home" asp-action="Index">Home  </a>  </li>
+        <li class="breadcrumb-item">  <a asp-action="Index">Pages </a> </li>
+        <li class="breadcrumb-item active" aria-current="page">@Model.PageName</li>
+    </ol>
+</nav>
+<div class="card">
+    <div class="card-header no-gutters has-tab" style="background-color:#fff">
+        <div class="d-md-flex m-b-15 align-items-center justify-content-between">
+            <div class="media align-items-center m-b-15">
+                <div class="avatar avatar-images">
+                    <img src="~/images/pages/@Model.Thumb" alt="@Model.Title" style="height:70px; width:70px;" asp-append-version="true" />
+                </div>
+                &nbsp; &nbsp;&nbsp;
+                <div class="m-l-15">
+                    <h4 class="m-b-0 font-weight-bold">@Model.PageName</h4>
+                    <p class="text-muted m-b-0">ID: #@Model.PageID</p>
+                </div>
+            </div>
+            <div class="m-b-15">
+                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.PageID" title="Edit"><i class="mdi mdi-circle-edit-outline"></i></a>
+            </div>
         </div>
     </div>
-    <div class="form-row">
-        <label for="validationDefault02">Contents</label>
-        <textarea type="text" class="form-control" placeholder="Contents" asp-for="Contents"></textarea>
+</div>
+
+<br />
+<div class="container-fluid">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#news-overview">Overview</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#news-images">Avatar</a>
+        </li>
+    </ul>
+    <div class="tab-content m-t-15">
+        <div class="tab-pane show active" id="news-overview">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title font-weight-bold">Page: @Model.Title</h4>
+                    <div class="table-responsive">
+                        <table class="table m-t-20">
+                            <tbody>
+                                <tr>
+                                    <td>Title:</td>
+                                    <td class="text-dark font-weight-bold">@Model.Title</td>
+                                </tr>
+                                <tr>
+                                    <td>Alias:</td>
+                                    <td>@Model.Alias</td>
+                                </tr>
+                             
+                                <tr>
+                                    <td>Status:</td>
+                                    <td>
+                                        <div class="checkbox">
+                                            <input asp-for="Published" type="checkbox" />
+                                            <label for="Published">Public</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                               
+                               
+                                <tr>
+                                    <td>CreatedDate:</td>
+                                    <td>@Model.CreatedDate</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Description</h4>
+                </div>
+                <div class="card-body">
+                    @Html.Raw(Model.Contents)
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="news-images">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img class="img-fluid" src="~/images/pages/@Model.Thumb" alt="@Model.Title" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="form-row">
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault01">Thumb</label>
-            <input type="text" class="form-control" placeholder="Thumb" asp-for="Thumb" />
-        </div>
-        <div class="col-md-4 mb-3">
-            <label for="exampleFormControlSelect14">Published</label>
-        @if (Model.Published)
-        {
-            <input type="text" value="Public" class="form-control" id="validationDefault04" readonly/>
-
-        }
-        else
-        {
-            <input type="text" value="Non-Public" class="form-control" id="validationDefault04" readonly/>
-
-        }
-        </div>
-    </div>
-    <div class="form-row">
-
-        <label for="validationDefault03">Title</label>
-        <textarea type="number" class="form-control" id="validationDefault03" placeholder="Title" asp-for="Title"></textarea>
-
-    </div>
-    <div class="form-row">
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault04">MetaDesc</label>
-            <input type="text" class="form-control" id="validationDefault04" placeholder="MetaDesc" asp-for="MetaDesc">
-        </div>
-
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault04">MetaKey</label>
-            <input type="text" class="form-control" id="validationDefault04" placeholder="MetaKey" asp-for="MetaKey">
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault04">Alias</label>
-            <input type="text" class="form-control" id="validationDefault04" placeholder="Alias" asp-for="Alias">
-        </div>
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault03">CreatedDate</label>
-            <input type="text" class="form-control" id="validationDefault03" placeholder="CreatedDate" asp-for="CreatedDate">
-        </div>
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault04">Ordering</label>
-            <input type="text" class="form-control" id="validationDefault04" placeholder="Ordering" asp-for="Ordering">
-        </div>
-    </div>
+</div>
 <hr />
 <div>
-    <a asp-action="Index"><h5>Back to List</h5></a>
+    <a asp-action="Index"><i class="mdi mdi-arrow-left-bold" style="font-size: 20px;"><span>Back</span></i></a>
 </div>
+
+
+
 

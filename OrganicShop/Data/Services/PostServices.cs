@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using OrganicShop.Data.Interfaces;
 using OrganicShop.Data.ViewModels;
 using OrganicShop.Models;
+using static OrganicShop.Data.ViewModels.PostViewModel;
 
 namespace OrganicShop.Data.Services
 {
@@ -55,19 +56,18 @@ namespace OrganicShop.Data.Services
             return Status;
         }
 
-        public void Update(PostViewModel.UpdatePostViewModel model)
+        public void Update(Posts model, string photo,string alias)
         {
             var result = GetPostById(model.PostID);
-            if(result != null)
-            {
+            if (result != null)
+            { 
                 result.PostID = model.PostID;
                 result.Title = model.Title;
                 result.SContents = model.SContents;
                 result.Contents = model.Contents;
-                result.Thumb = model.Thumb;
                 result.Published = model.Published;
-                result.Alias = model.Alias;
-                result.CreatedDate  = model.CreatedDate;
+                result.Alias = alias;
+                result.CreatedDate = model.CreatedDate;
                 result.Author = model.Author;
                 result.AccountID = model.AccountID;
                 result.Tags = model.Tags;
@@ -77,8 +77,11 @@ namespace OrganicShop.Data.Services
                 result.MetaDesc = model.MetaDesc;
                 result.MetaKey = model.MetaKey;
                 result.Views = model.Views;
+                result.Thumb = photo;
+                _context.Posts.Update(result);
+                _context.SaveChanges();
+
             }
-           _context.SaveChanges();
         }
 
         public void Delete(int id)

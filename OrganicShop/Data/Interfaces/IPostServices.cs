@@ -11,7 +11,7 @@ namespace OrganicShop.Data.Interfaces
         List<SelectListItem> GetPublished();
         void Create(Posts posts);
         Posts GetPostById(int id);
-        void Update(UpdatePostViewModel model);
+        void Update(Posts model,string photo,string alias);
         void Delete(int id);
     }
 }
