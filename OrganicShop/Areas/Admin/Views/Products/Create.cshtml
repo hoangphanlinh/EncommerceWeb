@@ -4,9 +4,14 @@
     ViewData["Title"] = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-<h3>Create Product!</h3>
-<hr />
-<form asp-action="Create">
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">  <a asp-action="Index">Home  </a>  </li>
+        <li class="breadcrumb-item">  <a href="#">News </a> </li>
+        <li class="breadcrumb-item active" aria-current="page">Create</li>
+    </ol>
+</nav>
+<form asp-action="Create" method="post" enctype="multipart/form-data">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-row">
         <div class="col-md-4 mb-3">

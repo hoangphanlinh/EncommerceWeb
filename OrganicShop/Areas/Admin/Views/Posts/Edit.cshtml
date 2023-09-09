@@ -1,0 +1,125 @@
+﻿@model OrganicShop.Models.Posts
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">  <a asp-action="Index">Home  </a>  </li>
+        <li class="breadcrumb-item">  <a href="#">News </a> </li>
+        <li class="breadcrumb-item active" aria-current="page">Edit</li>
+    </ol>
+</nav>
+<form asp-action="Edit" asp-roue-id="@Model.PostID" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="PostID"/>
+    <input type="hidden" asp-for="Thumb" />
+    <input type="hidden" asp-for="CreatedDate" />
+
+    <div class="mdi-page-layout-header no-gutters has-tab">
+        <div class="d-md-flex align-items-center justify-content-between">
+            <div class="media align-items-center m-b-15">
+            </div>
+            <div class="m-b-15">
+                <button class="btn btn-primary" type="submit">
+                    <i class="mdi mdi-content-save-edit">
+                        <span>Save</span>
+                    </i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#nav-tabs-home" role="tab"
+               aria-controls="nav-tabs" aria-selected="true">Thông tin News</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="nav-profile-tab" data-toggle="pill" href="#nav-profile" role="tab"
+               aria-controls="nav-profile" aria-selected="false">Thông tin SEO</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="nav-mota-tab" data-toggle="pill" href="#nav-mota" role="tab"
+               aria-controls="nav-mota" aria-selected="false">Mô Tả</a>
+        </li>
+    </ul>
+    <div class="tab-content m-t-15" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-tabs-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="Title">Title</label>
+                        <input type="text" class="form-control" asp-for="Title" />
+                    </div>
+                     
+                    <div class="form-group col-md-12">
+                        <label class="font-weight-bold" for="Thumb">Image</label>
+                        <img src="~/images/news/@Model.Thumb" class="img-thumbnail" height="80" width="80" asp-append-version="true" />
+                        <input name="Thumb" type="file" class="form-control" asp-for="Thumb"/>
+                        <span asp-validation-for="Thumb" class="text-danger"></span>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="Title">News-Categories</label>
+                        @Html.DropDownList("NewDirID", ViewBag.lsNew as SelectList, "Select News Categories", new{@class="form-control"})
+                    </div>
+                    <div class="row">
+                        <div class="form-group d-flex align-items-center">
+                            <div class="checkbox">
+                                <input asp-for="Published" type="checkbox" />
+                                <label for="Published">Public</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group d-flex align-items-center">
+                            <div class="checkbox">
+                                <input asp-for="isHot" type="checkbox" />
+                                <label for="isHot">isHot</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group d-flex align-items-center">
+                            <div class="checkbox">
+                                <input asp-for="isNewfeed" type="checkbox" />
+                                <label for="isNewfeed">isNewfeed</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="MetaDesc">MetaDesc</label>
+                        <input type="text" class="form-control" asp-for="MetaDesc" />
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="MetaKey">MetaKey</label>
+                        <input type="text" class="form-control" asp-for="MetaKey" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-mota" role="tabpanel" aria-labelledby="nav-mota-tab">
+            <div class="card">
+                <div class="card-body">
+                    <textarea asp-for="Contents" class="form-control"></textarea>
+                    <span asp-validation-for="Contents" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<hr />
+<div>
+    <a asp-action="Index"><i class="mdi mdi-arrow-left-bold" style="font-size: 20px;"><span>Back</span></i></a>
+</div>
+@section Scripts
+    {
+    @await Html.PartialAsync("_Summernote", new {height = 200, selector = "#Contents"})
+}

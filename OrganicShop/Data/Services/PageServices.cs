@@ -63,7 +63,7 @@ namespace OrganicShop.Data.Services
             return (IOrderedQueryable<Pages>)model;
         }
 
-        public void Update(UpdatePageViewModel page)
+        public void Update(Pages page, string alias, string photo)
         {
             var model = GetById(page.PageID);
             if(model != null)
@@ -71,16 +71,18 @@ namespace OrganicShop.Data.Services
                 model.PageID = page.PageID;
                 model.PageName = page.PageName;
                 model.Contents = page.Contents;
-                model.Thumb = page.Thumb;
                 model.Published = page.Published;
                 model.Title = page.Title;
                 model.MetaDesc = page.MetaDesc;
                 model.MetaKey = page.MetaKey;
-                model.Alias = page.Alias;
+                model.Alias = alias;
+                model.Thumb = photo;
                 model.CreatedDate = DateTime.Now;
                 model.Ordering = page.Ordering;
+                _context.Pages.Update(model);
+                _context.SaveChanges();
             }
-            _context.SaveChanges();
+           
         }
 
     }

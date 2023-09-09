@@ -81,8 +81,9 @@
                                     <span class="badge badge-danger rounded-pill d-inline">Disable</span>
                                 }
                             </td>
-                            <td>@item.Accounts.FullName</td>
-                            <td>@item.Categories.CatName</td>
+                            <td></td>
+                            @*<td>@item.Accounts.FullName</td>*@
+                            <td>@item.NewsDirectory.Name</td>
                             <td>
                                 @if (item.isHot)
                                 {
@@ -107,13 +108,15 @@
                             </td>
                             <td>@item.Views</td>
                             <td>@item.CreatedDate</td>
-                            
                             <td>
-                                <a asp-action="Details">
+                                <a asp-action="Details" asp-route-id="@item.PostID">
                                     <i class="mdi mdi-eye" style="font-size: 20px; color:black;padding-left: 15px;" title="View"></i>
                                 </a>
-                                <a asp-action="Edit">
+                                <a asp-action="Edit" asp-route-id="@item.PostID">
                                     <i class="mdi mdi-pencil" title="Edit" style="font-size: 20px; color:black; padding-left: 15px;"></i>
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.PostID">
+                                    <i class="mdi mdi-trash-can" title="Delete" style="font-size: 20px; color:black; padding-left: 15px;"></i>
                                 </a>
                             </td>
                         </tr>

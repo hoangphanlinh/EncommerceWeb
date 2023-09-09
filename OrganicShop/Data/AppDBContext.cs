@@ -26,6 +26,6 @@ namespace OrganicShop.Data
         public DbSet<City> City { get; set; }
         public DbSet<Ward> Ward { get; set; }
         public DbSet<District> District { get; set; }
-
+        public DbSet<NewsDirectory> NewsDirectories { get; set; }
     }
 }
