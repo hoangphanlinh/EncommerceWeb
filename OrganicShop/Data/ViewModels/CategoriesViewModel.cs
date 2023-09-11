@@ -17,6 +17,7 @@
         public string? MetaKey { get; set; }
         public string? Cover { get; set; }
         public string? SchemeMarkup { get; set; }
+        public IFormFile Photo { get; set; }
     }
     //User//
    

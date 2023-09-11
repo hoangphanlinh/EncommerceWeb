@@ -10,9 +10,9 @@ namespace OrganicShop.Data.Interfaces
 
         List<SelectListItem> GetPublished();
         void Add(Categories categories);
-        void Remove(int id);
+        void Delete(int id);
         Categories Detail(int id);
-        void Edit(UpdateCategoriesViewModel category);
+        void Edit();
         IOrderedQueryable<Categories> SearchCategory(string searchString);
 
     }

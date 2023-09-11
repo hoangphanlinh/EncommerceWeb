@@ -72,11 +72,20 @@ namespace OrganicShop.Data.Services
 
        
 
-        public Products UpdateProduct(int id, Products product)
+        public void UpdateProduct()
         {
-            _context.Products.Update(product);
             _context.SaveChanges();
-            return product;
+            
+        }
+        public void Delete(int id)
+        {
+            var page = _context.Products.Include(x=>x.Categories).FirstOrDefault(x => x.ProductID == id);
+            if (page != null)
+            {
+                _context.Products.Remove(page);
+
+            }
+            _context.SaveChanges();
         }
         public IOrderedQueryable<Products> SearchProduct(string searchString, int categoryId)
         {

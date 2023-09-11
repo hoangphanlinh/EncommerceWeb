@@ -1,4 +1,4 @@
-﻿@model OrganicShop.Models.Products
+﻿@model OrganicShop.Data.ViewModels.ProductViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -13,110 +13,142 @@
 </nav>
 <form asp-action="Create" method="post" enctype="multipart/form-data">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="form-row">
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault01">Product Name</label>
-            <input type="text" class="form-control" id="validationDefault01" placeholder="ProductName" asp-for="ProductName"/>
-        </div>
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault02">ShortDesc</label>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="ShortDesc" asp-for="ShortDesc"/>
-        </div>
-        <div class="col-md-4 mb-3">
-            <label for="exampleFormControlSelect14">Categories</label>
-            @Html.DropDownList("CatID", ViewBag.CategoryList as SelectList, "Select Categories", new{@class="form-control"})
-        </div>
-    </div>
-    <div class="form-row">
-        <label for="validationDefault01">Description</label>
-        <textarea type="text" class="form-control"  placeholder="Description" asp-for="Description"></textarea>
-    </div>
-    <div class="form-row">
-        <label for="validationDefault01">Media</label>
-        <input type="file" class="form-control" placeholder="Video" asp-for="Video"/>
-    </div>
-    <div class="form-row">
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault03">Price</label>
-            <input type="number" class="form-control" id="validationDefault03" placeholder="Price" asp-for="Price">
-        </div>
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault04">Discount</label>
-            <input type="text" class="form-control" id="validationDefault04" placeholder="Discount" asp-for="Discount">
-        </div>
-
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault04">Thumb</label>
-            <input type="text" class="form-control" id="validationDefault04" placeholder="Thumb" asp-for="Thumb">
+    <div class="mdi-page-layout-header no-gutters has-tab">
+        <div class="d-md-flex align-items-center justify-content-between">
+            <div class="media align-items-center m-b-15">
+            </div>
+            <div class="m-b-15">
+                <button class="btn btn-primary">
+                    <i class="mdi mdi-plus-circle">
+                        <span>Create</span>
+                    </i>
+                </button>
+            </div>
         </div>
     </div>
 
-    <div class="form-row">
-        <div class="col-md-6 mb-3">
-            <label for="validationDefault03">Best Sale</label>
-            <select class="custom-select" style="min-width:200px;" asp-items="ViewBag.BestSellersList">
-                <option value="" disable selected>Select</option>
-            </select>
-        </div>
-        <div class="col-md-6 mb-3">
-            <label for="validationDefault03">Status</label>
-            <select class="custom-select"  style="min-width:200px;" asp-items="ViewBag.StatusList">
-                <option value="" disable selected>Status</option>
-            </select>
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault03">Tags</label>
-            <input type="text" class="form-control" id="validationDefault03" placeholder="Tags" asp-for="Tags">
-        </div>
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault04">Title</label>
-            <input type="text" class="form-control" id="validationDefault04" placeholder="Title" asp-for="Title">
+    <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#nav-tabs-home" role="tab"
+               aria-controls="nav-tabs" aria-selected="true">Product Infomation</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="nav-profile-tab" data-toggle="pill" href="#nav-profile" role="tab"
+               aria-controls="nav-profile" aria-selected="false">SEO Information</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="nav-mota-tab" data-toggle="pill" href="#nav-mota" role="tab"
+               aria-controls="nav-mota" aria-selected="false">Description</a>
+        </li>
+    </ul>
+
+    <div class="tab-content m-t-15" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-tabs-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="Title">Product Name</label>
+                        <input type="text" class="form-control" asp-for="ProductName" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="Title">Title</label>
+                        <input type="text" class="form-control" asp-for="Title" required/>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="Title">ShortDesc</label>
+                        <input type="text" class="form-control" asp-for="ShortDesc" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="Thumb">Image</label>
+                        <input name="Photo" type="file" class="form-control" asp-for="Photo" required/>
+                        <span asp-validation-for="Photo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="Thumb">Categories</label>
+                        @Html.DropDownList("CatID", ViewBag.CategoryList as SelectList, "Select Categories", new{@class="form-control"})
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="Thumb">Video</label>
+                        <input name="Photo" type="file" class="form-control" asp-for="Video" />
+                        <span asp-validation-for="Video" class="text-danger"></span>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label class="font-weight-bold" for="Title">Price</label>
+                            <input type="number" class="form-control" asp-for="Price" required/>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="font-weight-bold" for="Title">Discount</label>
+                            <input type="number" class="form-control" asp-for="Discount" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="font-weight-bold" for="Title">Unit Stock</label>
+                            <input type="number" class="form-control" asp-for="UnitslnStock" required />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="font-weight-bold" for="Title">Status</label>
+                            <select asp-for="Active" class="custom-select" style="min-width:200px;" asp-items="ViewBag.StatusList">
+                                <option value="" disable selected>Status</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="font-weight-bold" for="Title">Best Sellers</label>
+                            <select asp-for="BestSellers" class="custom-select" style="min-width:200px;" asp-items="ViewBag.BestSellersList">
+                                <option value="" disable selected>Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="Title">Tags</label>
+                        <input type="text" class="form-control" asp-for="Tags" />
+                    </div>
+                    <div class="row">
+                        <div class="form-group d-flex align-items-center">
+                            <p style="color:red">Home Flag</p>
+                            <label class="switch switch-info switch-pill form-control-label mr-2">
+                                <input type="checkbox" class="switch-input form-check-input" asp-for="HomeFlag">
+                                <span class="switch-label" style="background-color: #8a909d;"></span>
+                                <span class="switch-handle"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
 
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault04">Alias</label>
-            <input type="text" class="form-control" id="validationDefault04" placeholder="Alias" asp-for="Alias">
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div class="card">
+            <div class="card-body">
+                <div class="form-group">
+                    <label class="font-weight-bold" for="MetaDesc">MetaDesc</label>
+                    <input type="text" class="form-control" asp-for="MetaDesc" />
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-bold" for="MetaKey">MetaKey</label>
+                    <input type="text" class="form-control" asp-for="MetaKey" />
+                </div>
+            </div>
         </div>
     </div>
-    <div class="form-row">
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault03">MetaDesc</label>
-            <input type="text" class="form-control" id="validationDefault03" placeholder="MetaDesc" asp-for="MetaDesc">
-        </div>
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault04">MetaKey</label>
-            <input type="text" class="form-control" id="validationDefault04" placeholder="MetaKey" asp-for="MetaKey">
-        </div>
 
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault04">UnitslnStock</label>
-            <input type="text" class="form-control" id="validationDefault04" placeholder="UnitslnStock" asp-for="UnitslnStock">
+    <div class="tab-pane fade" id="nav-mota" role="tabpanel" aria-labelledby="nav-mota-tab">
+        <div class="card">
+            <div class="card-body">
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
         </div>
     </div>
-    <div class="form-row">
-        <div class="col-md-6 mb-3">
-            <label for="validationDefault03">CreatedDate</label>
-            <input type="datetime-local" class="form-control" id="validationDefault03" placeholder="MetaDesc" asp-for="CreatedDate">
-        </div>
-        <div class="col-md-6 mb-3">
-            <label for="validationDefault04">ModifiedDate</label>
-            <input type="datetime-local" class="form-control" id="validationDefault04" placeholder="MetaKey" asp-for="ModifiedDate">
-        </div>
     </div>
-    <div class="form-group">
-        <p style="color:red">Home Flag</p>
-        <label class="switch switch-info switch-pill form-control-label mr-2">
-            <input type="checkbox" class="switch-input form-check-input" asp-for="HomeFlag">
-            <span class="switch-label" style="background-color: #8a909d;"></span>
-            <span class="switch-handle"></span>
-        </label>
-    </div>
-    <button class="btn btn-primary" type="submit">Create</button>
 </form>
 <hr />
 <div>
-    <a asp-action="Index"><h5>Back to List</h5></a>
+    <a asp-action="Index"><i class="mdi mdi-arrow-left-bold" style="font-size: 20px;"><span>Back</span></i></a>
 </div>
-
+@section Scripts
+    {
+    @await Html.PartialAsync("_Summernote", new {height = 200, selector = "#Description"})
+}

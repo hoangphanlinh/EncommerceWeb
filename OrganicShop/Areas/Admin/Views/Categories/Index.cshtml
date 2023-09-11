@@ -69,6 +69,9 @@
                                 <a asp-action="Edit" asp-route-id="@item.CatID">
                                     <i class="mdi mdi-pencil" title="Edit" style="font-size: 20px; color:black; padding-left: 15px;"></i>
                                 </a>
+                                <a asp-action="Delete" asp-route-id="@item.CatID">
+                                    <i class="mdi mdi-trash-can" title="Delete" style="font-size: 20px; color:black; padding-left: 10px;"></i>
+                                </a>
                             </td>
                         </tr>
                     }

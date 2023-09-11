@@ -33,26 +33,8 @@ namespace OrganicShop.Data.Services
             throw new NotImplementedException();
         }
 
-        public void Edit(UpdateCategoriesViewModel category)
+        public void Edit()
         {
-            var model = Detail(category.CatID);
-            if(model != null)
-            {
-                model.CatID = category.CatID;
-                model.CatName = category.CatName;
-                model.Description = category.Description;
-                model.ParentID = category.ParentID;
-                model.Levels = category.Levels;
-                model.Ordering = category.Ordering;
-                model.Published = category.Published;
-                model.Thumb = category.Thumb;
-                model.Title = category.Title;
-                model.Alias = category.Alias;
-                model.MetaDesc = category.MetaDesc;
-                model.MetaKey   = category.MetaKey;
-                model.Cover = category.Cover;
-                model.SchemeMarkup = category.SchemeMarkup;
-            }
             _context.SaveChanges();
         }
 
@@ -72,9 +54,14 @@ namespace OrganicShop.Data.Services
             return Status;
         }
 
-        public void Remove(int id)
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+           var category = _context.Categories.FirstOrDefault(x=>x.CatID==id);
+            if(category != null)
+            {
+                _context.Categories.Remove(category);
+            }
+            _context.SaveChanges();
         }
 
         public IOrderedQueryable<Categories> SearchCategory(string searchString)

@@ -1,86 +1,136 @@
-﻿@model OrganicShop.Data.ViewModels.UpdateCategoriesViewModel
+﻿@model OrganicShop.Models.Categories
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h3>Update Product!</h3>
-<hr />
-<form asp-action="Edit">
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">  <a asp-action="Index">Home  </a>  </li>
+        <li class="breadcrumb-item">  <a href="#">Systems </a> </li>
+        <li class="breadcrumb-item">  <a href="#">Categories </a> </li>
+        <li class="breadcrumb-item active" aria-current="page">Edit</li>
+    </ol>
+</nav>
+<form asp-action="Edit" asp-route-id="@Model.CatID" enctype="multipart/form-data">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="@Model.CatID " />
-
-    <div class="form-row">
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault01">Category Name</label>
-            <input type="text" class="form-control" id="validationDefault01" placeholder="Category Name" asp-for="CatName" />
-        </div>
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault02">ParentID</label>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="ParentID" asp-for="ParentID" />
-        </div>
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault04">Thumb</label>
-            <input type="text" class="form-control" id="validationDefault04" placeholder="Thumb" asp-for="Thumb">
-        </div>
-    </div>
-    <div class="form-row">
-        <label for="validationDefault01">Description</label>
-        <textarea type="text" class="form-control" placeholder="Description" asp-for="Description"></textarea>
-    </div>
-    <div class="form-row">
-        <label for="validationDefault01">Levels</label>
-        <input type="file" class="form-control" placeholder="Levels" asp-for="Levels" />
-    </div>
-    <div class="form-row">
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault03">Ordering</label>
-            <input type="text" class="form-control" id="validationDefault03" placeholder="Ordering" asp-for="Ordering">
-        </div>
-        <div class="col-md-4 mb-3">
-            <label for="exampleFormControlSelect14">Published</label>
-            @Html.DropDownList("Published", ViewBag.Published as List<SelectListItem>, new { @class = "form-control" })
-
-        </div>
-
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault04">Title</label>
-            <input type="text" class="form-control" id="validationDefault04" placeholder="Title" asp-for="Title">
+    <input type="hidden" asp-for="CatID" />
+    <input type="hidden" asp-for="Thumb" />
+    <div class="mdi-page-layout-header no-gutters has-tab">
+        <div class="d-md-flex align-items-center justify-content-between">
+            <div class="media align-items-center m-b-15">
+            </div>
+            <div class="m-b-15">
+                <button class="btn btn-primary">
+                    <i class="mdi mdi-content-save-edit">
+                        <span>Edit</span>
+                    </i>
+                </button>
+            </div>
         </div>
     </div>
 
-    <div class="form-row">
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault03">Alias</label>
-            <input type="text" class="form-control" id="validationDefault03" placeholder="Alias" asp-for="Alias">
-        </div>
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault04">MetaDesc</label>
-            <input type="text" class="form-control" id="validationDefault04" placeholder="MetaDesc" asp-for="MetaDesc">
+    <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#nav-tabs-home" role="tab"
+               aria-controls="nav-tabs" aria-selected="true">Category Infomation</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="nav-profile-tab" data-toggle="pill" href="#nav-profile" role="tab"
+               aria-controls="nav-profile" aria-selected="false">SEO Information</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="nav-mota-tab" data-toggle="pill" href="#nav-mota" role="tab"
+               aria-controls="nav-mota" aria-selected="false">Description</a>
+        </li>
+    </ul>
+
+    <div class="tab-content m-t-15" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-tabs-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="Title">Category Name</label>
+                        <input type="text" class="form-control" asp-for="CatName" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="Title">Title</label>
+                        <input type="text" class="form-control" asp-for="Title" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="Thumb">Image</label>
+                        <input name="Photo" type="file" class="form-control" asp-for="Thumb"/>
+                        <span asp-validation-for="Thumb" class="text-danger"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label class="font-weight-bold" for="Title">Ordering</label>
+                            <input type="number" class="form-control" asp-for="Ordering" required />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="font-weight-bold" for="Title">ParentID</label>
+                            <input type="number" class="form-control" asp-for="ParentID" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group d-flex align-items-center">
+                            <p style="color:red">Published</p>   &nbsp;
+                            <label class="switch switch-info switch-pill form-control-label mr-2">
+                                <input type="checkbox" class="switch-input form-check-input" asp-for="Published">
+                                <span class="switch-label" style="background-color: #8a909d;"></span>
+                                <span class="switch-handle"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
 
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault04">MetaKey</label>
-            <input type="text" class="form-control" id="validationDefault04" placeholder="MetaKey" asp-for="MetaKey">
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="MetaDesc">MetaDesc</label>
+                        <input type="text" class="form-control" asp-for="MetaDesc" />
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="MetaKey">MetaKey</label>
+                        <input type="text" class="form-control" asp-for="MetaKey" />
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="MetaKey">Scheme Markup</label>
+                        <input type="text" class="form-control" asp-for="SchemeMarkup" />
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="MetaKey">Cover</label>
+                        <input type="text" class="form-control" asp-for="Cover" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="nav-mota" role="tabpanel" aria-labelledby="nav-mota-tab">
+            <div class="card">
+                <div class="card-body">
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="form-row">
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault03">Cover</label>
-            <input type="text" class="form-control" id="validationDefault03" placeholder="Cover" asp-for="Cover">
-        </div>
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault04">SchemeMarkup</label>
-            <input type="text" class="form-control" id="validationDefault04" placeholder="SchemeMarkup" asp-for="SchemeMarkup">
-        </div>
-
-    </div>
-    <button class="btn btn-primary" type="submit">Update</button>
 </form>
 <hr />
 <div>
-    <a asp-action="Index"><h5>Back to List</h5></a>
+    <a asp-action="Index"><i class="mdi mdi-arrow-left-bold" style="font-size: 20px;"><span>Back</span></i></a>
 </div>
+@section Scripts
+    {
+    @await Html.PartialAsync("_Summernote", new {height = 200, selector = "#Description"})
+}
+
 
 
