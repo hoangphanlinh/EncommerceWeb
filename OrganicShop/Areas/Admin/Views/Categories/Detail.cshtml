@@ -1,90 +1,149 @@
 ﻿@model OrganicShop.Models.Categories
 @{
-    ViewData["Title"] = "Detail";
+    ViewData["Title"] = "Details";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-
-<h3>Detail Categories!</h3>
-<hr />
-
-
-    <div class="form-row">
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault01">Category Name</label>
-            <input type="text" class="form-control" id="validationDefault01" placeholder="Category Name" asp-for="@Model.CatName"/>
-        </div>
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault02">ParentID</label>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="ParentID" asp-for="ParentID" />
-        </div>
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault04">Thumb</label>
-            <input type="text" class="form-control" id="validationDefault04" placeholder="Thumb" asp-for="Thumb">
-        </div>
-    </div>
-    <div class="form-row">
-        <label for="validationDefault01">Description</label>
-        <textarea type="text" class="form-control" placeholder="Description" asp-for="Description"></textarea>
-    </div>
-    <div class="form-row">
-        <label for="validationDefault01">Levels</label>
-        <input type="file" class="form-control" placeholder="Levels" asp-for="Levels" />
-    </div>
-    <div class="form-row">
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault03">Ordering</label>
-            <input type="text" class="form-control" id="validationDefault03" placeholder="Ordering" asp-for="Ordering">
-        </div>
-        <div class="col-md-4 mb-3">
-            <label for="exampleFormControlSelect14">Published</label>
-        @if (Model.Published)
-        {
-            <input type="text" value="Active" class="form-control-sm" id="validationDefault04" checked readonly>
-
-        }
-        else
-        {
-            <input type="text" value="Disable" class="form-control-sm" id="validationDefault04" readonly>
-
-        }
-    </div>
-
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault04">Title</label>
-            <input type="text" class="form-control" id="validationDefault04" placeholder="Title" asp-for="Title">
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">  <a asp-controller="Home" asp-action="Index">Home  </a>  </li>
+        <li class="breadcrumb-item">  <a asp-action="Index">Categories </a> </li>
+        <li class="breadcrumb-item active" aria-current="page">@Model.CatName</li>
+    </ol>
+</nav>
+<div class="card">
+    <div class="card-header no-gutters has-tab" style="background-color:#fff">
+        <div class="d-md-flex m-b-15 align-items-center justify-content-between">
+            <div class="media align-items-center m-b-15">
+                <div class="avatar avatar-images">
+                    <img src="~/images/categories/@Model.Thumb" alt="@Model.Title" style="height:70px; width:70px;" asp-append-version="true" />
+                </div>
+                &nbsp; &nbsp;&nbsp;
+                <div class="m-l-15">
+                    <h4 class="m-b-0 font-weight-bold">@Model.CatName</h4>
+                    <p class="text-muted m-b-0">ID: #@Model.CatID</p>
+                </div>
+            </div>
+            <div class="m-b-15">
+                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.CatID" title="Edit"><i class="mdi mdi-circle-edit-outline"></i></a>
+            </div>
         </div>
     </div>
+</div>
 
-    <div class="form-row">
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault03">Alias</label>
-            <input type="text" class="form-control" id="validationDefault03" placeholder="Alias" asp-for="Alias">
-        </div>
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault04">MetaDesc</label>
-            <input type="text" class="form-control" id="validationDefault04" placeholder="MetaDesc" asp-for="MetaDesc">
-        </div>
+<br />
+<div class="container-fluid">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#news-overview">Overview</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#news-description">Description</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#news-images">Media</a>
+        </li>
+    </ul>
+    <div class="tab-content m-t-15">
+        <div class="tab-pane show active" id="news-overview">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title font-weight-bold">Category: @Model.CatName</h4>
+                    <div class="table-responsive">
+                        <table class="table m-t-20">
+                            <tbody>
+                                <tr>
+                                    <td>Title:</td>
+                                    <td class="text-dark font-weight-bold">@Model.Title</td>
+                                </tr>
+                                <tr>
+                                    <td>Alias:</td>
+                                    <td>@Model.Alias</td>
+                                </tr>
 
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault04">MetaKey</label>
-            <input type="text" class="form-control" id="validationDefault04" placeholder="MetaKey" asp-for="MetaKey">
+                                <tr>
+                                    <td>ParentID:</td>
+                                    <td>@Model.ParentID</td>
+                                </tr>
+                                <tr>
+                                    <td>Levels:</td>
+                                    <td>@Model.Levels</td>
+                                </tr>
+                                <tr>
+                                    <td>Ordering</td>
+                                    <td>@Model.Ordering</td>
+                                </tr>
+                                <tr>
+                                    <td>Meta Description</td>
+                                    <td>@Model.MetaDesc</td>
+                                </tr>
+                                <tr>
+                                    <td>Meta Key</td>
+                                    <td>@Model.MetaKey</td>
+                                </tr>
+                                <tr>
+                                    <td>Status:</td>
+                                    <td>
+                                        <div class="checkbox">
+                                            <input asp-for="Published" type="checkbox" />
+                                            <label for="Active">Public</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>SchemeMarkup</td>
+                                    <td>@Model.SchemeMarkup</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="tab-pane fade" id="news-description">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Description</h4>
+                </div>
+                <div class="card-body">
+                    @Html.Raw(Model.Description)
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="news-images">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Image</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img src="~/images/categories/@Model.Thumb" style="height:100px; width:100px;" alt="@Model.Title" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Cover</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img src="~/images/categories/@Model.Thumb" style="height:100px; width:100px;" alt="@Model.Title" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
-
-    <div class="form-row">
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault03">Cover</label>
-            <input type="text" class="form-control" id="validationDefault03" placeholder="Cover" asp-for="Cover">
-        </div>
-        <div class="col-md-4 mb-3">
-            <label for="validationDefault04">SchemeMarkup</label>
-            <input type="text" class="form-control" id="validationDefault04" placeholder="SchemeMarkup" asp-for="SchemeMarkup">
-        </div>
-
-    </div>
+</div>
 <hr />
 <div>
-    <a asp-action="Index"><h5>Back to List</h5></a>
+    <a asp-action="Index"><i class="mdi mdi-arrow-left-bold" style="font-size: 20px;"><span>Back</span></i></a>
 </div>
+
+
 
 

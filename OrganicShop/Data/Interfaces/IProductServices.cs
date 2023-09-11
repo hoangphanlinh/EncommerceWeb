@@ -8,7 +8,8 @@ namespace OrganicShop.Data.Interfaces
         IOrderedQueryable<Products> GetAllProduct();
         void CreateProduct(Products product);
         Products GetProductById(int id);
-        Products UpdateProduct(int id, Products product);
+        void UpdateProduct();
+        void Delete(int id);
         IOrderedQueryable<Products> SearchProduct(string searchString,int categoryId);
         IOrderedQueryable<Products> SearchListProduct(string searchString,int categoryId,string status);
 
