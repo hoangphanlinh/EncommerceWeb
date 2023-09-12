@@ -1,0 +1,13 @@
+﻿@using OrganicShop.Data
+@inject AppDBContext data;
+
+@foreach (var item in data.Categories.Where(x => x.CatName != ""))
+{
+    <div class="col-lg-3">
+    <div class="categories__item set-bg" data-setbg="../images/categories/@item.Thumb">
+        <h5>
+            <a href="@Url.Action("Index","Shop",new { page=1 , searchString = ViewBag.searchString,categoryId = item.CatID})">@item.CatName</a>
+        </h5>
+    </div>
+    </div>
+}

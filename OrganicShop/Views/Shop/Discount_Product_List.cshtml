@@ -2,7 +2,7 @@
 @using X.PagedList.Web.Common
 @model X.PagedList.IPagedList<OrganicShop.Models.Products>
 @{
-    ViewData["Title"] = "Search";
+    ViewData["Title"] = "DiscountList";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                     </div>
-                  
+
                     <div class="sidebar__item">
                         <div class="latest-product__text">
                             <h4>Latest Products</h4>
@@ -146,41 +146,43 @@
                 <div class="row">
                     @foreach (var item in Model)
                     {
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="../images/products/@item.Thumb">
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="product__discount__item">
+                                <div class="product__discount__item__pic set-bg"
+                                     data-setbg="../images/products/@item.Thumb">
+                                    <div class="product__discount__percent">-@item.Discount%</div>
                                     <ul class="product__item__pic__hover">
                                         <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                         <li><a href="#"><i class="fa fa-retweet"></i></a></li>
                                         <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                                     </ul>
                                 </div>
-                                <div class="product__item__text">
-                                    <h6><a href="#">@item.ProductName</a></h6>
-                                    <h5>$@item.Price</h5>
+                                <div class="product__discount__item__text">
+                                    <h5><a href="#">@item.ProductName</a></h5>
+                                    <div class="product__item__price">$@item.Price <span>$36.00</span></div>
                                 </div>
                             </div>
                         </div>
-
                     }
                 </div>
                 <div class="product__pagination" style="background-color:white">
-                    @using (Html.BeginForm("Index", "Shop", FormMethod.Get))
+                    @using (Html.BeginForm("Discount_Product_List", "Shop", FormMethod.Get))
                     {
                         @Html.Hidden("page", (object)ViewBag.Page)
                         @Html.Hidden("searchString", (object)ViewBag.searchString)
                         @Html.Hidden("categoryId", (object)ViewBag.categoryId)
                     }
-                  
+
                     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
                     <br /><br />
-                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page , searchString = ViewBag.searchString,categoryId = ViewBag.categoryId}),
+                    @Html.PagedListPager(Model, page => Url.Action("Discount_Product_List", new { page , searchString = ViewBag.searchString,categoryId = ViewBag.categoryId}),
                     new PagedListRenderOptions(){
                     ContainerDivClasses = new[] { "pagination-container" },
                     UlElementClasses = new[] { "pagination" },
                     LiElementClasses = new string[]{"page-item"},
                     PageClasses = new string[] {"page-link"},
-                    MaximumPageNumbersToDisplay = 5,
+                    MaximumPageNumbersToDisplay = 9,
+
                     })
                 </div>
             </div>
