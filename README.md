@@ -1,12 +1,11 @@
 # EncommerceWeb
 **Website shopping online**
 ***
-*I.CHỌN TEMPLATE
-*II.THIẾT KẾ DATABASE
-*III.PHÂN TÁCH LAYOUT
+I.CHỌN TEMPLATE
+II.THIẾT KẾ DATABASE
+III.PHÂN TÁCH LAYOUT
 1.PHÂN TÁCH LAYOUT ADMIN
 2.PHÂN TÁCH LAYOUT USER
-
 IV.NỘI DUNG TÁC VỤ
 IV.1. TÁC VỤ ADMIN
 1.Quản lý tài khoản quản trị
