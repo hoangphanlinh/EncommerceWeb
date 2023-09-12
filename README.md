@@ -38,19 +38,19 @@ IV.1. TÁC VỤ ADMIN
 + Thêm, xóa, sửa tin tức
 + Lọc danh sach tin tức
 9.Quản lý đơn vị
-	+ Danh sách đơn vị
-	+ Thêm, xóa, sửa
++ Danh sách đơn vị
++ Thêm, xóa, sửa
 10.Quản lý người giao hàng
 11.Quản lý khu vực(Tỉnh Thành)
- + Tỉnh/Thành/Quận,Huyện/Phường,Xã
++ Tỉnh/Thành/Quận,Huyện/Phường,Xã
 12.Thống kê
-		a/ Thống kê doanh số
-			+ Theo Ngày
-			+ Theo Tháng
-			+ Theo Năm
-		b/ Thống kê sản phẩm
-			+ Số lượng sản phẩm trong kho
-			+ Sản phâm hết hàng
+a/ Thống kê doanh số
++ Theo Ngày
++ Theo Tháng
++ Theo Năm
+b/ Thống kê sản phẩm
++ Số lượng sản phẩm trong kho
++ Sản phâm hết hàng
 
 IV.2. TÁC VỤ USER
 1.Xử lý trang chủ
@@ -66,11 +66,11 @@ IV.2. TÁC VỤ USER
 
 
 V.Xử lý Setup
-	+ Xử lý sitemap tin tức
-	+ Xử lý sitemap sản phẩm
-	+ Cấu hình SEO toàn thể sản phẩm
++ Xử lý sitemap tin tức
++ Xử lý sitemap sản phẩm
++ Cấu hình SEO toàn thể sản phẩm
 VI.Caches Website
 VII.Hoàn thiện Website
-	+ Publish website
++ Publish website
 
 
