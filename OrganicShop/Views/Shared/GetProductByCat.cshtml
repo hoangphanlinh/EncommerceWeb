@@ -1,0 +1,15 @@
+﻿@using OrganicShop.Data
+@inject AppDBContext data;
+
+<div class="sidebar_section">
+    <div class="sidebar_categories">
+        <ul>
+            @foreach (var item in data.Categories.Where(x => x.CatName != ""))
+            {
+                <li>
+                    <a href="@Url.Action("Index","Shop",new { page=1 , searchString = ViewBag.searchString,categoryId = item.CatID})">@item.CatName</a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

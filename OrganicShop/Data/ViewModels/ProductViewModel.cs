@@ -3,6 +3,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OrganicShop.Data.ViewModels
 {
+    public class ProductHomeViewModel
+    {
+        public int ProductID { get; set; }
+        public string? ProductName { get; set; }
+        public int? Price { get; set; }
+        public string? Thumb { get; set; }
+        public string? CatName { get; set; }
+    }
     public class ProductViewModel
     {
         public int ProductID { get; set; }

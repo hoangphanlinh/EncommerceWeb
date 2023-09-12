@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using OrganicShop.Data.ViewModels;
 using OrganicShop.Models;
 
 namespace OrganicShop.Data.Interfaces
@@ -12,6 +13,14 @@ namespace OrganicShop.Data.Interfaces
         void Delete(int id);
         IOrderedQueryable<Products> SearchProduct(string searchString,int categoryId);
         IOrderedQueryable<Products> SearchListProduct(string searchString,int categoryId,string status);
+
+        IEnumerable<ProductHomeViewModel> SearchProductCatName(string searchString);
+        IEnumerable<Products> ListProductDiscount();
+        IOrderedQueryable<Products> ProductDiscount();
+        IOrderedQueryable<Products> ProductBestSale();
+
+        IEnumerable<Products> ListProductBestSale();
+
 
         /*----Dropdown----*/
         List<Categories> GetCategories();

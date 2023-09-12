@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OrganicShop.Data.Interfaces;
+using OrganicShop.Data.ViewModels;
 using OrganicShop.Models;
 using System.Xml.Linq;
 using X.PagedList;
@@ -154,6 +155,44 @@ namespace OrganicShop.Data.Services
 
             };
             return Status;
+        }
+
+        public IEnumerable<ProductHomeViewModel> SearchProductCatName(string searchString)
+        {
+            var productlist = from product in _context.Products join cat in _context.Categories
+                              on product.CatID equals cat.CatID
+                              select new ProductHomeViewModel()
+                              {
+                                  ProductID = product.ProductID,
+                                  ProductName = product.ProductName,
+                                  Price =   product.Price,
+                                  Thumb = product.Thumb,
+                                  CatName =  cat.CatName
+                              };
+            productlist = productlist.Where(x => x.CatName.Contains(searchString));
+            return productlist;
+        }
+        public IEnumerable<Products> ListProductDiscount()
+        {
+            var result = _context.Products.Where(x => x.Discount > 0);
+            return result;
+        }
+
+        public IEnumerable<Products> ListProductBestSale()
+        {
+            var result = _context.Products.Where(x => x.BestSellers == true);
+            return result;
+        }
+
+        public IOrderedQueryable<Products> ProductDiscount()
+        {
+            var result = _context.Products.Where(x => x.Discount > 0);
+            return (IOrderedQueryable<Products>)result;
+        }
+        public IOrderedQueryable<Products> ProductBestSale()
+        {
+            var result = _context.Products.Where(x => x.BestSellers == true);
+            return (IOrderedQueryable<Products>)result;
         }
     }
 }
