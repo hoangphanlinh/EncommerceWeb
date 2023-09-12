@@ -9,7 +9,7 @@ Website shopping online
 
 IV.NỘI DUNG TÁC VỤ
 	IV.1. TÁC VỤ ADMIN
-1.Quản lý tài khoản quản trị
+**1.Quản lý tài khoản quản trị
 	+ Danh sách tài khoản quản trị
 	+ Lọc tài khoản quản trị
 	+ Cấu hình tài khoản quản trị(edit, block,detail)
