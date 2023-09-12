@@ -52,7 +52,7 @@ b/ Thống kê sản phẩm
 + Số lượng sản phẩm trong kho
 + Sản phâm hết hàng
 
-IV.2. TÁC VỤ USER
+IV.TÁC VỤ USER
 1.Xử lý trang chủ
 2.Xử lý danh mục sản phẩm
 3.Xử lý Tin tức
