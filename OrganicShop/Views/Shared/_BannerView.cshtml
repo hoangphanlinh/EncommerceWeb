@@ -1,0 +1,11 @@
+﻿@using OrganicShop.Data
+@inject AppDBContext data;
+
+@foreach(var item in data.Posts.Take(2).Where(x=>x.Published == true))
+{
+    <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="banner__pic">
+            <a asp-area="" asp-controller="Shop" asp-action="Index"><img src="~/images/news/@item.Thumb" alt="@item.Title" style="max-width: 100%"></a>
+        </div>
+    </div>
+}

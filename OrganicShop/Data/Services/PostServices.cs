@@ -94,5 +94,20 @@ namespace OrganicShop.Data.Services
             }
             _context.SaveChanges();
         }
+
+        public IOrderedQueryable<Posts> SearchPosts(string searchString, int categoryId)
+        {
+            var postlist = from post in _context.Posts select post;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                postlist = postlist.Where(x => x.Title.Contains(searchString));
+
+            }
+            if (categoryId != 0)
+            {
+                postlist = postlist.Where(x => x.NewDirID == categoryId);
+            }
+            return (IOrderedQueryable<Posts>)postlist;
+        }
     }
 }

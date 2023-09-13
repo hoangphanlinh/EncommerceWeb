@@ -7,6 +7,7 @@ using OrganicShop.Data.Interfaces;
 using OrganicShop.Data.Services;
 using OrganicShop.Helpper;
 using OrganicShop.Models;
+using System.Drawing;
 using X.PagedList;
 using static OrganicShop.Data.ViewModels.PostViewModel;
 
@@ -51,8 +52,9 @@ namespace OrganicShop.Areas.Admin.Controllers
                     if (Image != null && Image.Length > 0)
                     {
                         var file = Image;
-
+                        
                         var uploads = Path.Combine(_webHostEnvironment.WebRootPath, "images/news");
+                        
                         if (file.Length > 0)
                         {
                             // var fileName = Guid.NewGuid().ToString().Replace("-", "") + Path.GetExtension(file.FileName);
@@ -70,7 +72,7 @@ namespace OrganicShop.Areas.Admin.Controllers
                 {
                     PostID = model.PostID,
                     Title = model.Title,
-                    SContents = model.Contents,
+                    SContents = model.SContents,
                     Contents = model.Contents,
                     Thumb = uniuefilename,
                     Published = model.Published,
