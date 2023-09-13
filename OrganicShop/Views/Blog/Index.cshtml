@@ -105,11 +105,11 @@
                                         <li><i class="fa fa-calendar-o"></i>@item.CreatedDate</li>
                                         <li><i class="fa fa-eye"></i> 5</li>
                                     </ul>
-                                    <h5><a asp-action="Details" asp-route-id="@item.PostID">@item.Title</a></h5>
+                                    <h5><a asp-area="" asp-controller="Blog" asp-action="Details" asp-route-id="@item.PostID">@item.Title</a></h5>
                                     <p>
                                         @item.SContents
                                     </p>
-                                    <a asp-action="Details" asp-route-id="@item.PostID" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
+                                    <a asp-area="" asp-controller="Blog" asp-action="Details" asp-route-id="@item.PostID" class="blog__btn">READ MORE <span class="arrow_right"></span></a>
                                 </div>
                             </div>
                         </div>
