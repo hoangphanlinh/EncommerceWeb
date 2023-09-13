@@ -1,0 +1,13 @@
+﻿@using OrganicShop.Data
+@inject AppDBContext data;
+<div class="blog__sidebar__item">
+    <h4>Categories</h4>
+    <ul>
+        @foreach (var item in data.NewsDirectories.Where(x => x.Name != ""))
+        {
+            <li>
+                <a href="@Url.Action("Index","Blog",new { page=1 , searchString = ViewBag.searchString,categoryId = item.ID})">@item.Name</a>
+            </li>
+        }
+    </ul>
+</div>

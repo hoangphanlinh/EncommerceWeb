@@ -14,5 +14,7 @@ namespace OrganicShop.Data.Interfaces
         void Update(Posts model,string photo,string alias);
         void Delete(int id);
         IOrderedQueryable<Posts> SearchPosts(string searchString, int categoryId);
+        IEnumerable<Posts> ListBlog();
+        IEnumerable<Posts> RelatedBlog(int categoryId);
     }
 }

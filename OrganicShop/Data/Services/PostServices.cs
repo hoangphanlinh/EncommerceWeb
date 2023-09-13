@@ -109,5 +109,17 @@ namespace OrganicShop.Data.Services
             }
             return (IOrderedQueryable<Posts>)postlist;
         }
+
+        public IEnumerable<Posts> ListBlog()
+        {
+            var model = _context.Posts;
+            return model;
+        }
+
+        public IEnumerable<Posts> RelatedBlog(int categoryId)
+        {
+            var model = _context.Posts.Where(x=>x.NewDirID == categoryId);
+            return model;
+        }
     }
 }
