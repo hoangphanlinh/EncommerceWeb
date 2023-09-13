@@ -1,0 +1,21 @@
+﻿@using OrganicShop.Data
+@inject AppDBContext data;
+
+@foreach (var item in data.Posts.Take(3).Where(x => x.Published == true))
+{
+    <div class="col-lg-4 col-md-4 col-sm-6">
+        <div class="blog__item">
+            <div class="blog__item__pic">
+                <img src="~/images/news/@item.Thumb" alt="@item.Title">
+            </div>
+            <div class="blog__item__text">
+                <ul>
+                    <li><i class="fa fa-calendar-o"></i>@item.CreatedDate</li>
+                    <li><i class="fa fa-comment-o"></i>@item.Views</li>
+                </ul>
+                <h5><a asp-controller="Blog" asp-action="Details" asp-route-id="@item.PostID">@item.Title</a></h5>
+                <p>@item.SContents </p>
+            </div>
+        </div>
+    </div>
+}

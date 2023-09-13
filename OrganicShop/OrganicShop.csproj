@@ -26,6 +26,8 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="wwwroot\images\categories\" />
+    <Folder Include="wwwroot\images\banner\" />
+    <Folder Include="wwwroot\images\users\" />
     <Folder Include="wwwroot\images\products\" />
     <Folder Include="wwwroot\images\pages\" />
     <Folder Include="wwwroot\images\news\" />

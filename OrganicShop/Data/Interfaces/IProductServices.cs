@@ -18,6 +18,8 @@ namespace OrganicShop.Data.Interfaces
         IEnumerable<Products> ListProductDiscount();
         IOrderedQueryable<Products> ProductDiscount();
         IOrderedQueryable<Products> ProductBestSale();
+        IEnumerable<Products> LatestProducts();
+
 
         IEnumerable<Products> ListProductBestSale();
 

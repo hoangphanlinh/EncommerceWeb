@@ -5,6 +5,7 @@
     ViewData["Title"] = "Search";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<partial name="~/Views/Shared/_HeroSectionPartialView.cshtml" />
 
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg" data-setbg="../img/breadcrumb.jpg">
@@ -164,7 +165,6 @@
 
                     }
                 </div>
-                <div class="product__pagination" style="background-color:white">
                     @using (Html.BeginForm("Index", "Shop", FormMethod.Get))
                     {
                         @Html.Hidden("page", (object)ViewBag.Page)
@@ -182,7 +182,6 @@
                     PageClasses = new string[] {"page-link"},
                     MaximumPageNumbersToDisplay = 5,
                     })
-                </div>
             </div>
         </div>
     </div>

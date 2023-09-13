@@ -52,7 +52,10 @@
                         <label class="font-weight-bold" for="Title">Title</label>
                         <input type="text" class="form-control" asp-for="Title" />
                     </div>
-                     
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="Title">Short Description</label>
+                        <input type="text" class="form-control" asp-for="SContents" />
+                    </div>
                     <div class="form-group col-md-12">
                         <label class="font-weight-bold" for="Thumb">Image</label>
                         <img src="~/images/news/@Model.Thumb" class="img-thumbnail" height="80" width="80" asp-append-version="true" />

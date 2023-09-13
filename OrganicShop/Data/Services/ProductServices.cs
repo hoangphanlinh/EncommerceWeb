@@ -194,5 +194,11 @@ namespace OrganicShop.Data.Services
             var result = _context.Products.Where(x => x.BestSellers == true);
             return (IOrderedQueryable<Products>)result;
         }
+
+        public IEnumerable<Products> LatestProducts()
+        {
+            var result = _context.Products;
+            return result;
+        }
     }
 }
