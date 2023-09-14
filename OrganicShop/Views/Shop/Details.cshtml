@@ -1,0 +1,101 @@
+﻿@model OrganicShop.Models.Products
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<partial name="~/Views/Shared/_HeroSectionPartialView.cshtml" />
+
+<!-- Breadcrumb Section Begin -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">@Model.Categories.CatName</a></li>
+                <li class="breadcrumb-item active" aria-current="page">@Model.ProductName</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+
+<!-- Breadcrumb Section End -->
+<!-- Product Details Section Begin -->
+<section class="product-details spad" style="padding-top: 30px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="product__details__pic">
+                    <div class="product__details__pic__item">
+                        <img class="product__details__pic__item--large"
+                             src="~/images/products/@Model.Thumb" alt="@Model.Alias" style="width: 540px; height:560px">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="product__details__text">
+                    <h3>@Model.ProductName</h3>
+                   <p>Category: @Model.Categories.CatName</p>
+                    <div class="product__details__price">$ @Model.Price</div>
+                    <p>
+                        @Model.ShortDesc
+                    </p>
+                    <div class="product__details__quantity">
+                        <div class="quantity">
+                            <div class="pro-qty">
+                                <input type="text" value="1">
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="primary-btn">ADD TO CARD</a>
+                    <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                    <ul>
+                        <li><b>Availability</b> <span>@Model.UnitslnStock</span></li>
+                        <li><b>Weight</b> <span>1 kg</span></li>
+                        @if(Model.BestSellers == true)
+                        {
+                            <li><b>Satus</b> <span>Best Sale</span></li>
+                        }
+                        @if(Model.Discount > 0)
+                        {
+                            <li><b>Discount</b> <span>@Model.Discount %</span></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="product__details__tab">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
+                               aria-selected="true" style="font-size:20px">Description</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                            <div class="product__details__tab__desc">
+                                @Html.Raw(Model.Description)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Product Details Section End -->
+<!-- Related Product Section Begin -->
+<section class="related-product">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title related__product__title">
+                    <h2>Related Product</h2>
+                </div>
+            </div>
+        </div>
+        @await Component.InvokeAsync("LatestProduct")
+
+    </div>
+</section>
+<!-- Related Product Section End -->
