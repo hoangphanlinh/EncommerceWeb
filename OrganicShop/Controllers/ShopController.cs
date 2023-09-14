@@ -45,5 +45,10 @@ namespace OrganicShop.Controllers
             PagedList<Products> models = new PagedList<Products>(lsproducts, pageNumber, pageSize);
             return View(models);
         }
+        public IActionResult Details(int id)
+        {
+            var model = _productservices.GetProductById(id);
+            return View(model);
+        }
     }
 }

@@ -4,7 +4,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <partial name="~/Views/Shared/_HeroSectionPartialView.cshtml" />
-<br />
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Blog</a></li>
+                <li class="breadcrumb-item"><a href="#">@Model.NewsDirectory.Name</a></li>
+                <li class="breadcrumb-item active" aria-current="page">@Model.Title</li>
+            </ol>
+        </div>
+    </div>
+</div>
 <!-- Blog Details Hero Begin -->
 <section>
     <div class="container">
