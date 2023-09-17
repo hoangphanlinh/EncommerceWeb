@@ -5,6 +5,7 @@
     ViewData["Title"] = "Blog/Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="~/scripts/blogcontroller.js"></script>
 <partial name="~/Views/Shared/_HeroSectionPartialView.cshtml" />
 
 <!-- Breadcrumb Section Begin -->
@@ -42,6 +43,7 @@
                         <h4>Recent News</h4>
                         @await Component.InvokeAsync("RecentBlog")
                     </div>
+                    <!---->
                     <partial name="~/Views/Shared/_BlogTagPartialView.cshtml" />
 
                 </div>

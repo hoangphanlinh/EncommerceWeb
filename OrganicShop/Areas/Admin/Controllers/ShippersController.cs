@@ -14,13 +14,21 @@ namespace OrganicShop.Areas.Admin.Controllers
         {
             _shipperServices = shipperServices;
         }
-        public IActionResult Index(int? page)
+       public IActionResult Index(int? page)
         {
             var pageNumber = page == null || page <= 0 ? 1 : page.Value;
             var pageSize = 5;
             var lsshippers = _shipperServices.GetAllShipper();
             PagedList<Shippers> models = new PagedList<Shippers>(lsshippers, pageNumber, pageSize);
             return View(models);
+
+        }
+        [HttpGet]
+
+        public JsonResult LoadData()
+        {
+            var data = _shipperServices.GetAllShipper().ToList();
+            return Json(data);
 
         }
     }

@@ -116,9 +116,10 @@ namespace OrganicShop.Data.Services
             return model;
         }
 
-        public IEnumerable<Posts> RelatedBlog(int categoryId)
+        public IEnumerable<Posts> RelatedBlog(int id)
         {
-            var model = _context.Posts.Where(x=>x.NewDirID == categoryId);
+            var result = GetPostById(id);
+            var model = _context.Posts.Where(x=>x.PostID != id && x.NewDirID == result.NewDirID);
             return model;
         }
     }

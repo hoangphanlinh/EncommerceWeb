@@ -6,6 +6,7 @@ namespace OrganicShop.Models
     {
         [Key]
         public int AttributeID { get; set; }
+        [Required]
         public string? Name { get; set; }
     }
 }
