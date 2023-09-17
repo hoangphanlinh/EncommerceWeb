@@ -3,7 +3,7 @@ using OrganicShop.Data.Interfaces;
 using OrganicShop.Data.Services;
 using OrganicShop.Models;
 using X.PagedList;
-
+using System.Text.Json;
 namespace OrganicShop.Controllers
 {
     public class BlogController : Controller
@@ -34,6 +34,11 @@ namespace OrganicShop.Controllers
             var result = _postServices.GetPostById(id);
             return View(result);
         }
-
+        [HttpGet]
+        public IActionResult RelatedBlog(int id)
+        {
+            var model = _postServices.RelatedBlog(id).Take(3).ToList();
+            return View(model);
+        }
     }
 }

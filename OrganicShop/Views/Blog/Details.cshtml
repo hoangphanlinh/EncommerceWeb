@@ -104,8 +104,9 @@
             </div>
         </div>
         <div class="row">
-            @await Component.InvokeAsync("RelatedBlog",new{CategoryId = Model.PostID})
+            @await Component.InvokeAsync("RelatedBlog",new {id = Model.PostID})
         </div>
+      
     </div>
 </section>
 <!-- Related Blog Section End -->

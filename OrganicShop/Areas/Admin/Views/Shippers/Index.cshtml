@@ -6,6 +6,7 @@
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
+
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">  <a href="#"><i class="mdi mdi-home"></i>Home</a>  </li>
@@ -30,8 +31,8 @@
             </div>
 
         </div>
-@*        <a asp-action="Create" class="btn btn-sm btn-outline-primary"><i class="mdi mdi-plus-circle" style="font-size: 15px;" title="Add Category"><span></span></i></a>
-*@
+       <a asp-action="Create" class="btn btn-sm btn-outline-primary"><i class="mdi mdi-plus-circle" style="font-size: 15px;" title="Add Category"><span>Create</span></i></a>
+
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -46,7 +47,7 @@
                         <th></th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tblshipper">
 
                     @foreach (var item in Model)
                     {

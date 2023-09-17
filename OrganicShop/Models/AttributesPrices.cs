@@ -13,6 +13,7 @@ namespace OrganicShop.Models
         [ForeignKey("Products")]
         public int? ProductID { get; set; }
         public Products? Products { get; set; }
+        [Required]
         public int? Price { get; set; }
         public bool Active { get; set; }
     }

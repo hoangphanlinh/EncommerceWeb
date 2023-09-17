@@ -8,10 +8,13 @@ namespace OrganicShop.Models
         [Key]
         public int AccountID { get; set; }
         public string? Phone { get; set; }
+        [Required]
         public string? Email { get; set; }
+        [Required]
         public string? Password { get; set; }
         public string? Salt { get; set; }
         public bool Active { get; set; }
+        [Required]
         public string? FullName { get; set; }
         [ForeignKey("Roles")]
         public int? RoleID { get; set; }

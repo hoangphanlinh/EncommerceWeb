@@ -10,9 +10,9 @@ namespace OrganicShop.Components
         {
             _postServices = postServices;
         }
-        public IViewComponentResult Invoke(int CategoryId)
+        public IViewComponentResult Invoke(int id)
         {
-            var model = _postServices.RelatedBlog(CategoryId).ToList();
+            var model = _postServices.RelatedBlog(id).ToList();
             return View(model);
         }
     }

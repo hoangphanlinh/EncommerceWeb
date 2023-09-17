@@ -22,6 +22,8 @@ namespace OrganicShop.Data.Interfaces
 
 
         IEnumerable<Products> ListProductBestSale();
+        IEnumerable<Products> RelatedProduct(int id);
+
 
 
         /*----Dropdown----*/

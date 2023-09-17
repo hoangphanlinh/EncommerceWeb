@@ -6,6 +6,7 @@ namespace OrganicShop.Models
     {
         [Key]
         public int cityId { get; set; }
+        [Required]
         public string? cityName { get; set; }
 
     }

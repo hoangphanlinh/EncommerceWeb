@@ -200,5 +200,12 @@ namespace OrganicShop.Data.Services
             var result = _context.Products;
             return result;
         }
+
+        public IEnumerable<Products> RelatedProduct(int id)
+        {
+            var result = GetProductById(id);
+            var model = _context.Products.Where(x => x.ProductID != id && x.CatID == result.CatID);
+            return model;
+        }
     }
 }
